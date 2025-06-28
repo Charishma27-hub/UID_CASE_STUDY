@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Net Banking</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+        }
+        
+        p {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .features {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .features li {
+            list-style-type: none;
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .features li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .divider {
+            border: none;
+            height: 1px;
+            background-color: #eee;
+            margin: 30px 0;
+        }
+        
+        .enroll-btn {
+            display: block;
+            width: 200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .enroll-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Enrollment form styles */
+        #enrollmentForm {
+            display: none;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        #enrollmentForm h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .submit-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #219653;
+        }
+
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Corporate Net Banking</h1>
+    <p>Manage your company's finances anytime, anywhere with our secure online banking platform.</p>
+    
+    <div class="features">
+        <ul>
+            <li>View account balances and transactions</li>
+            <li>Initiate and approve payments</li>
+            <li>Manage payroll and vendor payments</li>
+            <li>Access detailed reports and statements</li>
+            <li>Multi-level approval workflows</li>
+        </ul>
+    </div>
+    
+    <hr class="divider">
+    
+    <button id="enrollButton" class="enroll-btn">Enroll Now</button>
+    
+    <div id="enrollmentForm">
+        <h2>Enrollment Form</h2>
+        <form id="netBankingForm">
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" name="companyName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="accountNumber">Corporate Account Number</label>
+                <input type="text" id="accountNumber" name="accountNumber" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="taxId">Tax Identification Number</label>
+                <input type="text" id="taxId" name="taxId" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="contactPerson">Primary Contact Person</label>
+                <input type="text" id="contactPerson" name="contactPerson" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="authMethod">Preferred Authentication Method</label>
+                <select id="authMethod" name="authMethod" required>
+                    <option value="">Select an option</option>
+                    <option value="sms">SMS OTP</option>
+                    <option value="email">Email OTP</option>
+                    <option value="token">Security Token</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Enrollment</button>
+        </form>
+    </div>
+    
+    <div id="successMessage" class="success-message">
+        <h3>Thank you for your enrollment request!</h3>
+        <p>Your corporate net banking application has been received. Our representative will contact you within 2 business days to complete the setup process.</p>
+        <p>For any questions, please contact our corporate support at <strong>corporate.support@yourbank.com</strong> or call <strong>1-800-CORP-BANK</strong>.</p>
+    </div>
+
+    <script>
+        document.getElementById('enrollButton').addEventListener('click', function() {
+            document.getElementById('enrollmentForm').style.display = 'block';
+            this.style.display = 'none';
+        });
+
+        document.getElementById('netBankingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            // For this example, we'll just show the success message
+            
+            document.getElementById('enrollmentForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Scroll to the success message
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

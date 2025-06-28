@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Bank</title>
+    <link rel="stylesheet" href="nexus.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html">Nexus</a></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="aboutus.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <video autoplay muted loop id="video-background">
+            <source src="backgroundvideo.mp4" type="video/mp4">
+            <!-- Add additional source elements for other formats if needed -->
+        </video>
+        <div class="hero-content">
+            <h1>Welcome to Nexus Bank</h1>
+            <p>Your trusted financial partner for all banking needs</p>
+        </div>
+    </section>
+    
+    
+    <br><br>
+    <section class="services">
+        <h2>Our Banking Services</h2>
+        <div class="service-grid">
+          <a href="personal.html" style="text-decoration: none; color: inherit;">
+            <div class="service-card">
+                <div class="service-icon"> <img src="personal.png" alt="Personal" height="200px"></div>
+                <h3>Personal</h3>
+                <p>Banking solutions for individuals</p>
+            </div>
+          </a>
+          <a href="Nribanking.html" style="text-decoration: none; color: inherit;">
+            <div class="service-card">
+                <div class="service-icon"><img src="nri.png" alt="NRI" height="200px"></div>
+                <h3>NRI</h3>
+                <p>Services for Non-Resident Indians</p>
+            </div>
+          </a>
+            <a href="coorporate.html" style="text-decoration: none; color: inherit;">
+            <div class="service-card">
+                <div class="service-icon"><img src="corporate.png" alt="Corporate" height="200px"></div>
+                <h3>Corporate</h3>
+                <p>Banking for large organizations</p>
+            </div>
+            </a>
+            <a href="business.html" style="text-decoration: none; color: inherit;">
+            <div class="service-card">
+                <div class="service-icon"><img src="business.png" alt="Business" height="200px"></div>
+                <h3>Business</h3>
+                <p>Solutions for small businesses</p>
+            </div>
+            </a>
+        </div>
+    </section>
+    <!-- Loan Interest Rate Slider Section -->
+<div class="slider-container">
+    <div class="slides" id="slides">
+      <!-- Slide 1 -->
+      <div class="slide">
+        <h2>HOME LOAN</h2>
+        <div class="rate">8.10% <small>p.a. onwards</small></div>
+        <p>The loan is available at very competitive rates of interest, currently available in the industry.</p>
+        <a href="interestcalc.html" class="button"><span>→</span> Calculate Interest Rate</a>
+      </div>
+  
+      <!-- Slide 2 -->
+      <div class="slide">
+        <h2>VEHICLE LOAN</h2>
+        <div class="rate">8.75% <small>p.a. onwards</small></div>
+        <p>Avail a car loan, or opt for a pre-approved car loan, and get the best interest rates.</p>
+        <a href="interestcalc.html" class="button"><span>→</span> Calculate Interest Rate</a>
+      </div>
+  
+      <!-- Slide 3 -->
+      <div class="slide">
+        <h2>PERSONAL LOAN</h2>
+        <div class="rate">11.60% <small>p.a. onwards</small></div>
+        <p>Avail a personal loan and get the best interest rates.</p>
+        <a href="interestcalc.html" class="button"><span>→</span> Calculate Interest Rate</a>
+      </div>
+  
+      <!-- Slide 4 -->
+      <div class="slide">
+        <h2>LOAN AGAINST PROPERTY</h2>
+        <div class="rate">10.10% <small>p.a. onwards</small></div>
+        <p>Let your assets take care of your financial needs.</p>
+        <a href="interestcalc.html" class="button"><span>→</span> Calculate Interest Rate</a>
+      </div>
+  
+      <!-- Slide 5 -->
+      <div class="slide">
+        <h2>EDUCATION LOAN</h2>
+        <div class="rate">8.25% <small>p.a. onwards</small></div>
+        <p>Shine like a Star with BOI Star Education Loan.</p>
+        <a href="interestcalc.html" class="button"><span>→</span> Calculate Interest Rate</a>
+      </div>
+    </div>
+  
+    <div class="nav-buttons">
+      <button onclick="changeSlide(-1)">←</button>
+      <button onclick="changeSlide(1)">→</button>
+    </div>
+  
+    <div class="dots" id="dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+      <span class="dot" onclick="goToSlide(3)"></span>
+      <span class="dot" onclick="goToSlide(4)"></span>
+    </div>
+  </div>
+    <section>
+        <div class="news-caution-wrapper">
+            <!-- LATEST NEWS -->
+            <div class="column left-column">
+              <h2>LATEST NEWS <a href="#" class="view-all">View All &#8250;</a></h2>
+          
+              <div class="news-item">
+                <img src="https://img.icons8.com/color/48/megaphone.png" alt="icon">
+                <div class="news-content"><a href="#">To strengthen your Aadhaar, update your Aadhaar if 10 years old</a></div>
+              </div>
+          
+              <div class="news-item">
+                <img src="https://img.icons8.com/fluency/48/trophy.png" alt="icon">
+                <div class="news-content"><a href="#">Awards & Accolades</a></div>
+              </div>
+              
+              <div class="news-item">
+                <img src="https://img.icons8.com/fluency/48/sms.png" alt="icon">
+                <div class="news-content"><a href="#">Notice for Termination of BOI Billpay Application for payment of utility bills</a></div>
+              </div>
+          
+              <!-- You can add older items here too -->
+              <div class="news-item">
+                <img src="https://img.icons8.com/color/48/megaphone.png" alt="icon">
+                <div class="news-content"><a href="#">Information on secured assets possessed under SARFAESI Act, 2002 as on 30.09.2024</a></div>
+              </div>
+          
+              <div class="news-item">
+                <img src="https://img.icons8.com/color/48/megaphone.png" alt="icon">
+                <div class="news-content"><a href="#">List of Willful Defaulters of our Bank as on 30.12.2024</a></div>
+              </div>
+          
+              <div class="news-item">
+                <img src="https://img.icons8.com/color/48/megaphone.png" alt="icon">
+                <div class="news-content"><a href="#">BOI Mobile Omni Neo Bank App launched for superior service</a></div>
+              </div>
+          
+              <div class="news-item">
+                 <img src="https://img.icons8.com/color/48/megaphone.png" alt="icon">
+                <div class="news-content"><a href="#">Sunset of Loyalty Rewards in old BOI Mobile App</a></div>
+              </div>
+            </div>
+          
+            <!-- CAUTION -->
+            <div class="column right-column">
+              
+              <ul>
+                <li>Beware of FAKE MUDRA/PMMY website</li>
+                <li>Fake Illegal Loan Apps</li>
+                <li>SOVA Android Trojan Targets Banks</li>
+                <li>Beware of Fake SMSes and Fake Phone Calls</li>
+                <li>Fake addresses and phone numbers of Bank's branches are created by miscreants on google search.</li>
+                <li>Please do not search for any branch address on google search or map.</li>
+                <li>Use Bank's own website only for any contact details</li>
+              </ul>
+            </div>
+          </div>
+    </section>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="#">Awards & Recognition</a></li>
+                    <li><a href="#">Media Center</a></li>
+                    <li><a href="#">Investor Relations</a></li>
+                </ul>
+                <br>
+                <br>
+                <h3>Popular Products & Services</h3>
+                <ul>
+                    <li><a href="#">Savings Account</a></li>
+                    <li><a href="#">Current Account</a></li>
+                    <li><a href="#">Fixed Deposit</a></li>
+                    <li><a href="#">Money Transfer</a></li>
+                    <li><a href="#">Credit Cards</a></li>
+                    <li><a href="#">Personal Loan</a></li>
+                    <li><a href="#">Home Loan</a></li>
+                    <li><a href="#">Car Loan</a></li>
+                    <li><a href="#">Mutual Fund</a></li>
+                    <li><a href="#">Debt Management Services</a></li>
+                    <li><a href="#">Education Loan</a></li>
+                    <li><a href="#">Two Wheeler Loan</a></li>
+                    <li><a href="#">FASTAG</a></li>
+                    <li><a href="#">National Pension System</a></li>
+                    <li><a href="#">Public Provident Fund</a></li>
+                    <li><a href="#">Loan on Credit Card</a></li>
+                    <li><a href="#">Loan Against Property</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Overview</h3>
+                <ul>
+                    <li><a href="#">Tools & Calculators</a></li>
+                    <li><a href="#">Fixed Deposit Calculator</a></li>
+                    <li><a href="#">Personal Loan EMI Calculator</a></li>
+                    <li><a href="#">Home Loan EMI Calculator</a></li>
+                    <li><a href="#">Car Loan EMI Calculator</a></li>
+                    <li><a href="#">Mutual Fund Calculator</a></li>
+                    <li><a href="#">SIP Calculator</a></li>
+                    <li><a href="#">Education Loan EMI Calculator</a></li>
+                    <li><a href="#">Retirement Calculator</a></li>
+                    <li><a href="#">Two Wheeler Loan EMI Calculator</a></li>
+                    <li><a href="#">NPS Calculator</a></li>
+                    <li><a href="#">PPF Calculator</a></li>
+                </ul>
+                <br>
+                <br>
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Customer Care</a></li>
+                    <li><a href="#">Report Unauthorized Transactions</a></li>
+                    <li><a href="#">Form Center</a></li>
+                    <li><a href="#">Raise a Service Request</a></li>
+                    <li><a href="#">Report Suspicious Activities</a></li>
+                    <li><a href="#">Complaints and Grievance Redressal</a></li>
+                    <li><a href="#">Complaint Form</a></li>
+                    <li><a href="#">Central Know Your Customer (CKYC)</a></li>
+                    <li><a href="#">List of Unclaimed Accounts</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Regulatory Information</h3>
+                <ul>
+                    <li><a href="#">Safe Banking</a></li>
+                    <li><a href="#">RBI Awareness Campaign</a></li>
+                    <li><a href="#">RBI: Beware of Fictitious Offers</a></li>
+                    <li><a href="#">RBI Kehta Hai</a></li>
+                    <li><a href="#">Regulatory Disclosure Section</a></li>
+                    <li><a href="#">Customer Literature on NPAs and SMAs</a></li>
+                    <li><a href="#">Regulatory Disclosure Section 2025</a></li>
+                    <li><a href="#">RBI-UDGAM Portal (Unclaimed Deposits Gateway to Access Information)</a></li>
+                </ul>
+                <br>
+                <br>
+                <h3>Ways to Bank</h3>
+                <ul>
+                    <li><a href="#">Digital Banking</a></li>
+                    <li><a href="#">Mobile Banking</a></li>
+                    <li><a href="#">Internet Banking</a></li>
+                    <li><a href="#">iMobile</a></li>
+                    <li><a href="#">WhatsApp Banking</a></li>
+                    <li><a href="#">Pockets</a></li>
+                    <li><a href="#">Ask iPal</a></li>
+                    <li><a href="#">ATMs and Branches</a></li>
+                </ul>
+            </div>
+    
+        
+            <div class="footer-bottom">© 2025 Your Bank. All rights reserved.</div>
+        
+    </footer> 
+    <script>
+        let currentSlide = 0;
+        const totalSlides = document.querySelectorAll(".dot").length;
+      
+        function showSlide(index) {
+          const slides = document.getElementById("slides");
+          const dots = document.querySelectorAll(".dot");
+          if (index >= totalSlides) currentSlide = 0;
+          else if (index < 0) currentSlide = totalSlides - 1;
+          else currentSlide = index;
+      
+          slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+          dots.forEach(dot => dot.classList.remove("active"));
+          dots[currentSlide].classList.add("active");
+        }
+      
+        function changeSlide(step) {
+          showSlide(currentSlide + step);
+        }
+      
+        function goToSlide(index) {
+          showSlide(index);
+        }
+      
+        setInterval(() => {
+          changeSlide(1);
+        }, 4000);
+      </script>
+       
+</body>
+</html>

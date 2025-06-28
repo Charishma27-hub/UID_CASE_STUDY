@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Services | Nexus Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1e4b8e;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .left, .right {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #1e4b8e;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #f0f5ff;
+            color: #1e4b8e;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .tab:hover {
+            background-color: #d0e0ff;
+        }
+
+        .tab.active {
+            background-color: #1e4b8e;
+            color: white;
+        }
+
+        .section-title {
+            margin: 20px 0 10px;
+            font-weight: bold;
+            color: #1e4b8e;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: #d0e0ff;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #1e4b8e;
+            cursor: pointer;
+        }
+
+        .amount-display {
+            font-weight: bold;
+            min-width: 100px;
+            text-align: right;
+        }
+
+        .duration-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .duration-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #f0f5ff;
+            color: #1e4b8e;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .duration-button:hover {
+            background-color: #d0e0ff;
+        }
+
+        .duration-button.active {
+            background-color: #1e4b8e;
+            color: white;
+        }
+
+        .right {
+            background-color: #f0f5ff;
+            color: #1e4b8e;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #d0e0ff;
+        }
+
+        .result {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1e4b8e;
+        }
+
+        .sub-result {
+            margin-bottom: 5px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .details-button {
+            background-color: #d0e0ff;
+            color: #1e4b8e;
+        }
+
+        .details-button:hover {
+            background-color: #c0d0ef;
+        }
+
+        .apply-button {
+            background-color: #1e4b8e;
+            color: white;
+        }
+
+        .apply-button:hover {
+            background-color: #153a6e;
+        }
+
+        /* Loan Cards Section */
+        .loan-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .loan-container h2 {
+            text-align: center;
+            color: #1e4b8e;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .loan-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .loan-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .loan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .loan-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .loan-card h2 {
+            margin: 15px 20px 10px;
+            color: #1e4b8e;
+            font-size: 1.4rem;
+            text-align: left;
+        }
+
+        .loan-card ul {
+            margin: 0 20px 20px;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .loan-card li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .loan-card li:before {
+            content: "•";
+            color: #1e4b8e;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .loan-buttons {
+            display: flex;
+            margin: 0 20px 20px;
+            gap: 10px;
+        }
+
+        .apply-btn, .more-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .apply-btn {
+            background-color: #1e4b8e;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .apply-btn:hover {
+            background-color: #153a6e;
+        }
+
+        .more-btn {
+            background-color: white;
+            color: #1e4b8e;
+            border: 1px solid #1e4b8e;
+        }
+
+        .more-btn:hover {
+            background-color: #f0f5ff;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 700px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .modal-header {
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: #1e4b8e;
+            margin: 0;
+        }
+
+        .modal-body {
+            padding: 10px 0;
+        }
+
+        .features-list {
+            columns: 2;
+            column-gap: 30px;
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+            break-inside: avoid;
+        }
+
+        .eligibility-criteria {
+            background-color: #f0f5ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .eligibility-criteria h3 {
+            margin-top: 0;
+            color: #1e4b8e;
+        }
+
+        .documents-required {
+            margin-top: 20px;
+        }
+
+        .documents-required h3 {
+            color: #1e4b8e;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .left, .right {
+                width: 100%;
+            }
+            
+            .loan-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 90%;
+                margin: 10% auto;
+            }
+            
+            .features-list {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Explore Our Loan Services</h1>
+        <p>Choose the perfect loan for your needs with Nexus Bank's competitive rates</p>
+    </header>
+    
+    <div class="container">
+        <div class="left">
+            <h1>Choose Your Loan</h1>
+            <div class="tabs">
+                <button class="tab active" data-rate="11">Personal</button>
+                <button class="tab" data-rate="8.5">Home</button>
+                <button class="tab" data-rate="9">Vehicle</button>
+                <button class="tab" data-rate="10">Education</button>
+                <button class="tab" data-rate="12">Business</button>
+            </div>
+
+            <div class="section-title">Amount</div>
+            <div class="slider-container">
+                <input type="range" class="slider" min="50000" max="5000000" step="10000" value="2000000">
+                <span class="amount-display">20,00,000</span>
+            </div>
+
+            <div class="section-title">Duration</div>
+            <div class="duration-buttons">
+                <button class="duration-button active" data-months="6">6 Months</button>
+                <button class="duration-button" data-months="12">1 Year</button>
+                <button class="duration-button" data-months="24">2 Years</button>
+                <button class="duration-button" data-months="36">3 Years</button>
+                <button class="duration-button" data-months="60">5 Years</button>
+            </div>
+        </div>
+
+        <div class="right">
+            <div>
+                <div class="sub-result">Interest Rate @ <span class="interest-rate">11</span>%</div>
+                <div class="result total-repayment">₹22,20,000</div>
+                <div class="sub-result">Total Interest: ₹<span class="total-interest">2,20,000</span></div>
+                <div class="sub-result">Minimal documentation</div>
+                <div class="sub-result">No Collateral required</div>
+                <div class="sub-result">Quick disbursal within 24 hours</div>
+            </div>
+            <div class="actions">
+                <button class="button details-button">DETAILS</button>
+                <button class="button apply-button">APPLY NOW</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="loan-container">
+        <h2>Our Loan Products</h2>
+        <div class="loan-cards">
+            <!-- Personal Loan Card -->
+            <div class="loan-card">
+                <img src="https://www.fibe.in/_next/image/?url=https%3A%2F%2Faltcont.fibe.in%2Fwp-content%2Fuploads%2F2021%2F09%2Fpersonal-loan-1560234151.jpg&w=3840&q=75" alt="Personal Loan">
+                <h2>Personal Loan</h2>
+                <ul>
+                    <li>Instant approval | ₹50K to ₹35L</li>
+                    <li>Interest rates from 10.5% p.a.</li>
+                    <li>Flexible repayment up to 5 years</li>
+                    <li>No collateral required</li>
+                </ul>
+                <div class="loan-buttons">
+                    <button class="apply-btn" id="personal-apply">Apply Now</button>
+                    <button class="more-btn" onclick="openModal('personal')">Know More</button>
+                </div>
+            </div>
+
+            <!-- Home Loan Card -->
+            <div class="loan-card">
+                <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/2/12-questions-to-ask-home-loan-provider-before-applying-for-home-loan.jpg" alt="Home Loan">
+                <h2>Home Loan</h2>
+                <ul>
+                    <li>Zero processing fees</li>
+                    <li>Up to 90% of property value</li>
+                    <li>Interest rates from 8.5% p.a.</li>
+                    <li>Tenure up to 30 years</li>
+                </ul>
+                <div class="loan-buttons">
+                    <button class="apply-btn" id="home-apply">Apply Now</button>
+                    <button class="more-btn" onclick="openModal('home')">Know More</button>
+                </div>
+            </div>
+
+            <!-- Education Loan Card -->
+            <div class="loan-card">
+                <img src="https://flyblog.fly.finance/uploads/2024/11/What-is-Education-Loan-1-1.png" alt="Education Loan">
+                <h2>Education Loan</h2>
+                <ul>
+                    <li>Coverage for 1900+ institutions</li>
+                    <li>Moratorium period available</li>
+                    <li>Up to ₹1.5 crore funding</li>
+                    <li>Competitive interest rates</li>
+                </ul>
+                <div class="loan-buttons">
+                    <button class="apply-btn" id="education-apply">Apply Now</button>
+                    <button class="more-btn" onclick="openModal('education')">Know More</button>
+                </div>
+            </div>
+
+            <!-- Car Loan Card -->
+            <div class="loan-card">
+                <img src="https://www.finnable.com/wp-content/uploads/2022/01/Instant-car-loan.jpg" alt="Car Loan">
+                <h2>Car Loan</h2>
+                <ul>
+                    <li>100% on-road funding</li>
+                    <li>Flexible tenure up to 7 years</li>
+                    <li>Interest rates from 9% p.a.</li>
+                    <li>Quick approval process</li>
+                </ul>
+                <div class="loan-buttons">
+                    <button class="apply-btn" id="car-apply">Apply Now</button>
+                    <button class="more-btn" onclick="openModal('car')">Know More</button>
+                </div>
+            </div>
+
+            <!-- Gold Loan Card -->
+            <div class="loan-card">
+                <img src="https://www.indusind.com/iblogs/wp-content/uploads/302.jpg" alt="Gold Loan">
+                <h2>Gold Loan</h2>
+                <ul>
+                    <li>75% LTV on gold value</li>
+                    <li>Instant disbursal in 30 minutes</li>
+                    <li>Interest rates from 11% p.a.</li>
+                    <li>No prepayment charges</li>
+                </ul>
+                <div class="loan-buttons">
+                    <button class="apply-btn" id="gold-apply">Apply Now</button>
+                    <button class="more-btn" onclick="openModal('gold')">Know More</button>
+                </div>
+            </div>
+
+            <!-- Business Loan Card -->
+            <div class="loan-card">
+                <img src="https://ajivikafinance.in/images/IMG/businessloanbanner.jpg" alt="Business Loan">
+                <h2>Business Loan</h2>
+                <ul>
+                    <li>Up to ₹50 lakhs funding</li>
+                    <li>Collateral-free options</li>
+                    <li>Flexible repayment terms</li>
+                    <li>Quick approval for existing customers</li>
+                </ul>
+                <div class="loan-buttons">
+                    <button class="apply-btn" id="business-apply">Apply Now</button>
+                    <button class="more-btn" onclick="openModal('business')">Know More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Loan Modal -->
+    <div id="personal-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-user-tie"></i> Personal Loan</h2>
+            </div>
+            <div class="modal-body">
+                <p>Nexus Bank Personal Loans offer you the financial flexibility to meet your personal needs, whether it's for a wedding, vacation, medical emergency, or home renovation. With quick approval and minimal documentation, get funds disbursed to your account within 24 hours.</p>
+                
+                <h3>Key Features:</h3>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Loan amount from ₹50,000 to ₹35 lakhs</li>
+                    <li><i class="fas fa-check-circle"></i> Competitive interest rates starting at 10.5% p.a.</li>
+                    <li><i class="fas fa-check-circle"></i> Flexible repayment tenure from 1 to 5 years</li>
+                    <li><i class="fas fa-check-circle"></i> No collateral or security required</li>
+                    <li><i class="fas fa-check-circle"></i> Minimal documentation with quick processing</li>
+                    <li><i class="fas fa-check-circle"></i> Prepayment options available after 6 months</li>
+                    <li><i class="fas fa-check-circle"></i> Insurance cover option available</li>
+                    <li><i class="fas fa-check-circle"></i> Special discounts for existing Nexus Bank customers</li>
+                </ul>
+                
+                <div class="eligibility-criteria">
+                    <h3><i class="fas fa-clipboard-check"></i> Eligibility Criteria</h3>
+                    <ul>
+                        <li>Salaried individuals with minimum monthly income of ₹25,000</li>
+                        <li>Minimum age: 21 years, Maximum age: 60 years at loan maturity</li>
+                        <li>Minimum work experience: 2 years (1 year with current employer)</li>
+                        <li>CIBIL score of 750 or above preferred</li>
+                    </ul>
+                </div>
+                
+                <div class="documents-required">
+                    <h3><i class="fas fa-file-alt"></i> Documents Required</h3>
+                    <ul>
+                        <li>Identity proof (PAN Card, Aadhaar, Passport, etc.)</li>
+                        <li>Address proof (Aadhaar, Utility bills, etc.)</li>
+                        <li>Income proof (Salary slips, Bank statements)</li>
+                        <li>2 passport size photographs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Loan Modal -->
+    <div id="home-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-home"></i> Home Loan</h2>
+            </div>
+            <div class="modal-body">
+                <p>Realize your dream of owning a home with Nexus Bank Home Loans. We offer attractive interest rates, flexible repayment options, and loans for purchase, construction, or renovation of residential properties.</p>
+                
+                <h3>Key Features:</h3>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Loan up to ₹10 crores for property purchase</li>
+                    <li><i class="fas fa-check-circle"></i> Financing up to 90% of property value</li>
+                    <li><i class="fas fa-check-circle"></i> Attractive interest rates starting at 8.5% p.a.</li>
+                    <li><i class="fas fa-check-circle"></i> Long repayment tenure up to 30 years</li>
+                    <li><i class="fas fa-check-circle"></i> Balance transfer facility available</li>
+                    <li><i class="fas fa-check-circle"></i> Top-up loan option for existing customers</li>
+                    <li><i class="fas fa-check-circle"></i> Special schemes for women borrowers</li>
+                    <li><i class="fas fa-check-circle"></i> Free property valuation service</li>
+                </ul>
+                
+                <div class="eligibility-criteria">
+                    <h3><i class="fas fa-clipboard-check"></i> Eligibility Criteria</h3>
+                    <ul>
+                        <li>Salaried or self-employed individuals between 21-65 years</li>
+                        <li>Minimum annual income of ₹3 lakhs</li>
+                        <li>CIBIL score of 700 or above</li>
+                        <li>Property should be in approved locations</li>
+                    </ul>
+                </div>
+                
+                <div class="documents-required">
+                    <h3><i class="fas fa-file-alt"></i> Documents Required</h3>
+                    <ul>
+                        <li>Completed application form with photographs</li>
+                        <li>Identity, address, and age proof</li>
+                        <li>Income documents (salary slips/IT returns)</li>
+                        <li>Property documents (title deed, approved plan, etc.)</li>
+                        <li>Processing fee cheque</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Loan Modal -->
+    <div id="education-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-graduation-cap"></i> Education Loan</h2>
+            </div>
+            <div class="modal-body">
+                <p>Nexus Bank Education Loans help you finance higher education in India or abroad without financial constraints. We cover tuition fees, accommodation, travel, and other education-related expenses.</p>
+                
+                <h3>Key Features:</h3>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Loan up to ₹1.5 crores for foreign education</li>
+                    <li><i class="fas fa-check-circle"></i> Covers 1900+ institutions worldwide</li>
+                    <li><i class="fas fa-check-circle"></i> Moratorium period (course period + 6 months)</li>
+                    <li><i class="fas fa-check-circle"></i> Competitive interest rates with tax benefits</li>
+                    <li><i class="fas fa-check-circle"></i> 100% financing for top-ranked institutions</li>
+                    <li><i class="fas fa-check-circle"></i> Loan covers tuition, travel, equipment, etc.</li>
+                    <li><i class="fas fa-check-circle"></i> Optional insurance cover available</li>
+                    <li><i class="fas fa-check-circle"></i> Special rates for meritorious students</li>
+                </ul>
+                
+                <div class="eligibility-criteria">
+                    <h3><i class="fas fa-clipboard-check"></i> Eligibility Criteria</h3>
+                    <ul>
+                        <li>Indian nationals pursuing higher education</li>
+                        <li>Age between 16-35 years</li>
+                        <li>Confirmed admission in recognized institution</li>
+                        <li>Co-applicant required (parent/guardian/spouse)</li>
+                    </ul>
+                </div>
+                
+                <div class="documents-required">
+                    <h3><i class="fas fa-file-alt"></i> Documents Required</h3>
+                    <ul>
+                        <li>Admission confirmation letter</li>
+                        <li>Course fee structure</li>
+                        <li>Academic records (marksheets, certificates)</li>
+                        <li>Identity, address, and age proof</li>
+                        <li>Income proof of co-applicant</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Car Loan Modal -->
+    <div id="car-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-car"></i> Car Loan</h2>
+            </div>
+            <div class="modal-body">
+                <p>Drive home your dream car with Nexus Bank Car Loans. We offer 100% financing on the on-road price of new cars with flexible repayment options and quick processing.</p>
+                
+                <h3>Key Features:</h3>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> 100% financing on on-road price</li>
+                    <li><i class="fas fa-check-circle"></i> Loan amount up to ₹50 lakhs</li>
+                    <li><i class="fas fa-check-circle"></i> Competitive interest rates from 9% p.a.</li>
+                    <li><i class="fas fa-check-circle"></i> Flexible tenure up to 7 years</li>
+                    <li><i class="fas fa-check-circle"></i> Quick approval within 2 hours</li>
+                    <li><i class="fas fa-check-circle"></i> No prepayment charges after 1 year</li>
+                    <li><i class="fas fa-check-circle"></i> Insurance and maintenance packages available</li>
+                    <li><i class="fas fa-check-circle"></i> Special offers on select car models</li>
+                </ul>
+                
+                <div class="eligibility-criteria">
+                    <h3><i class="fas fa-clipboard-check"></i> Eligibility Criteria</h3>
+                    <ul>
+                        <li>Salaried or self-employed individuals</li>
+                        <li>Minimum age: 21 years, Maximum: 65 years at loan maturity</li>
+                        <li>Minimum annual income of ₹3 lakhs</li>
+                        <li>CIBIL score of 700 or above preferred</li>
+                    </ul>
+                </div>
+                
+                <div class="documents-required">
+                    <h3><i class="fas fa-file-alt"></i> Documents Required</h3>
+                    <ul>
+                        <li>Completed application form with photographs</li>
+                        <li>Identity and address proof</li>
+                        <li>Income documents (salary slips/IT returns)</li>
+                        <li>Car quotation from dealer</li>
+                        <li>Driving license (if available)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gold Loan Modal -->
+    <div id="gold-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-ring"></i> Gold Loan</h2>
+            </div>
+            <div class="modal-body">
+                <p>Get instant liquidity against your gold ornaments with Nexus Bank Gold Loans. With minimal documentation and quick disbursal, meet your urgent financial needs without selling your gold.</p>
+                
+                <h3>Key Features:</h3>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Loan up to 75% of gold value</li>
+                    <li><i class="fas fa-check-circle"></i> Instant disbursal within 30 minutes</li>
+                    <li><i class="fas fa-check-circle"></i> Competitive interest rates from 11% p.a.</li>
+                    <li><i class="fas fa-check-circle"></i> Flexible tenure from 7 days to 3 years</li>
+                    <li><i class="fas fa-check-circle"></i> No prepayment charges</li>
+                    <li><i class="fas fa-check-circle"></i> Free gold insurance coverage</li>
+                    <li><i class="fas fa-check-circle"></i> Safe and secure vault storage</li>
+                    <li><i class="fas fa-check-circle"></i> Easy renewal options</li>
+                </ul>
+                
+                <div class="eligibility-criteria">
+                    <h3><i class="fas fa-clipboard-check"></i> Eligibility Criteria</h3>
+                    <ul>
+                        <li>Individuals aged 18 years and above</li>
+                        <li>Should be owner of the gold ornaments</li>
+                        <li>Minimum gold purity of 18 karat</li>
+                        <li>No income proof required</li>
+                    </ul>
+                </div>
+                
+                <div class="documents-required">
+                    <h3><i class="fas fa-file-alt"></i> Documents Required</h3>
+                    <ul>
+                        <li>Identity proof (Aadhaar, PAN, Voter ID, etc.)</li>
+                        <li>Address proof (if different from ID)</li>
+                        <li>2 passport size photographs</li>
+                        <li>Gold ornaments for valuation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Business Loan Modal -->
+    <div id="business-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-briefcase"></i> Business Loan</h2>
+            </div>
+            <div class="modal-body">
+                <p>Fuel your business growth with Nexus Bank Business Loans designed for entrepreneurs and business owners. Get quick access to funds for expansion, working capital, or equipment purchase.</p>
+                
+                <h3>Key Features:</h3>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Loan amount up to ₹50 lakhs</li>
+                    <li><i class="fas fa-check-circle"></i> Collateral-free options available</li>
+                    <li><i class="fas fa-check-circle"></i> Competitive interest rates from 12% p.a.</li>
+                    <li><i class="fas fa-check-circle"></i> Flexible repayment up to 5 years</li>
+                    <li><i class="fas fa-check-circle"></i> Quick approval within 48 hours</li>
+                    <li><i class="fas fa-check-circle"></i> Top-up loan facility</li>
+                    <li><i class="fas fa-check-circle"></i> Special schemes for women entrepreneurs</li>
+                    <li><i class="fas fa-check-circle"></i> Customized solutions for different industries</li>
+                </ul>
+                
+                <div class="eligibility-criteria">
+                    <h3><i class="fas fa-clipboard-check"></i> Eligibility Criteria</h3>
+                    <ul>
+                        <li>Business vintage of minimum 3 years</li>
+                        <li>Minimum annual turnover of ₹20 lakhs</li>
+                        <li>Profit making for last 2 years</li>
+                        <li>CIBIL score of 700 or above</li>
+                    </ul>
+                </div>
+                
+                <div class="documents-required">
+                    <h3><i class="fas fa-file-alt"></i> Documents Required</h3>
+                    <ul>
+                        <li>Business registration proof</li>
+                        <li>PAN card of business and proprietor</li>
+                        <li>Bank statements for last 12 months</li>
+                        <li>IT returns for last 2 years</li>
+                        <li>Business address proof</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const slider = document.querySelector('.slider');
+        const amountDisplay = document.querySelector('.amount-display');
+        const durationButtons = document.querySelectorAll('.duration-button');
+        const interestRateDisplay = document.querySelector('.interest-rate');
+        const totalRepaymentDisplay = document.querySelector('.total-repayment');
+        const totalInterestDisplay = document.querySelector('.total-interest');
+
+        let principal = parseInt(slider.value);
+        let duration = 6;
+        let rate = 11;
+
+        function formatNumber(num) {
+            return new Intl.NumberFormat('en-IN').format(num);
+        }
+
+        function calculateLoan() {
+            const interest = (principal * (rate / 100) * (duration / 12));
+            const totalRepayment = principal + interest;
+
+            totalRepaymentDisplay.textContent = `₹${formatNumber(Math.round(totalRepayment))}`;
+            totalInterestDisplay.textContent = `${formatNumber(Math.round(interest))}`;
+        }
+
+        // Initialize with formatted number
+        amountDisplay.textContent = formatNumber(principal);
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                rate = parseFloat(tab.dataset.rate);
+                interestRateDisplay.textContent = rate;
+                calculateLoan();
+            });
+        });
+
+        slider.addEventListener('input', () => {
+            principal = parseInt(slider.value);
+            amountDisplay.textContent = formatNumber(principal);
+            calculateLoan();
+        });
+
+        durationButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                durationButtons.forEach(b => b.classList.remove('active'));
+                button.classList.add('active');
+                duration = parseInt(button.dataset.months);
+                calculateLoan();
+            });
+        });
+
+        // Modal functionality
+        function openModal(loanType) {
+            document.getElementById(`${loanType}-modal`).style.display = 'block';
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+        }
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Apply button functionality
+        document.querySelector('.apply-button').addEventListener('click', function() {
+            const activeTab = document.querySelector('.tab.active').textContent;
+            const amount = document.querySelector('.amount-display').textContent;
+            const duration = document.querySelector('.duration-button.active').textContent;
+            const interest = document.querySelector('.interest-rate').textContent;
+            
+            alert(`Thank you for choosing Nexus Bank!\n\nLoan Type: ${activeTab}\nAmount: ₹${amount}\nDuration: ${duration}\nInterest Rate: ${interest}%\n\nYou will be redirected to the application form shortly.`);
+        });
+
+        // Details button functionality
+        document.querySelector('.details-button').addEventListener('click', function() {
+            const activeTab = document.querySelector('.tab.active').textContent.toLowerCase();
+            openModal(activeTab);
+        });
+
+        // Loan card apply buttons
+        document.getElementById('personal-apply').addEventListener('click', function() {
+            alert('Thank you for applying for a Personal Loan with Nexus Bank!\n\nOur representative will contact you shortly to complete your application.');
+        });
+        
+        document.getElementById('home-apply').addEventListener('click', function() {
+            alert('Thank you for applying for a Home Loan with Nexus Bank!\n\nOur mortgage specialist will contact you within 24 hours to discuss your requirements.');
+        });
+        
+        document.getElementById('education-apply').addEventListener('click', function() {
+            alert('Thank you for applying for an Education Loan with Nexus Bank!\n\nOur education loan counselor will reach out to you to guide you through the process.');
+        });
+        
+        document.getElementById('car-apply').addEventListener('click', function() {
+            alert('Thank you for applying for a Car Loan with Nexus Bank!\n\nYou will receive a call from our auto loan department to verify details and proceed with your application.');
+        });
+        
+        document.getElementById('gold-apply').addEventListener('click', function() {
+            alert('Thank you for applying for a Gold Loan with Nexus Bank!\n\nPlease visit your nearest branch with your gold ornaments to complete the valuation and disbursal process.');
+        });
+        
+        document.getElementById('business-apply').addEventListener('click', function() {
+            alert('Thank you for applying for a Business Loan with Nexus Bank!\n\nOur business banking team will contact you to discuss your funding needs and next steps.');
+        });
+
+        // Initial calculation
+        calculateLoan();
+    </script>
+
+</body>
+</html>

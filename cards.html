@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Services | Nexus Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0a2342;
+            --secondary-blue: #1d3a6b;
+            --accent-gold: #d4af37;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 4px 12px rgba(10, 35, 66, 0.1);
+            --business-blue: #1a5276;
+            --student-green: #27ae60;
+            --premium-purple: #8e44ad;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: #212529;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 600;
+        }
+        
+        .promo-banner {
+            background: linear-gradient(rgba(10, 35, 66, 0.8), rgba(10, 35, 66, 0.8)), 
+                        url('https://images.unsplash.com/photo-1604594849809-dfedbc827105?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .promo-content {
+            max-width: 60%;
+        }
+        
+        .promo-content h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+        
+        .promo-content .btn {
+            background-color: var(--accent-gold);
+            color: var(--primary-blue);
+        }
+        
+        .card-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .card-type {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--primary-blue);
+        }
+        
+        .card-type.debit {
+            border-top-color: var(--primary-blue);
+        }
+        
+        .card-type.credit {
+            border-top-color: var(--accent-gold);
+        }
+        
+        .card-type.travel {
+            border-top-color: var(--secondary-blue);
+        }
+        
+        .card-type.business {
+            border-top-color: var(--business-blue);
+        }
+        
+        .card-type.student {
+            border-top-color: var(--student-green);
+        }
+        
+        .card-type.premium {
+            border-top-color: var(--premium-purple);
+        }
+        
+        .card-type:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-image {
+            height: 180px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #f0f4f9;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-details {
+            padding: 20px;
+        }
+        
+        .card-title {
+            color: var(--primary-blue);
+            margin: 0 0 15px 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .card-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        
+        .card-features li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .card-features li:before {
+            content: "✓";
+            color: var(--accent-gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-blue);
+            transform: translateY(-2px);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-group .btn {
+            flex: 1;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f0f4f9;
+        }
+        
+        .card-badge {
+            background: var(--accent-gold);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 700px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: var(--primary-blue);
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            color: var(--primary-blue);
+            margin: 0;
+        }
+        
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .detail-label {
+            width: 150px;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+        
+        .detail-value {
+            flex: 1;
+        }
+        
+        .detail-features {
+            columns: 2;
+            column-gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .card-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+            }
+            
+            .detail-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .detail-features {
+                columns: 1;
+            }
+            
+            .modal-content {
+                width: 90%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Nexus Bank Card Services</h1>
+            <p>Choose the perfect card for your financial needs</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Promotional Banner -->
+        <div class="promo-banner">
+            <div class="promo-content">
+                <h2>Premium Travel Card Launch!</h2>
+                <p>Get 0% foreign transaction fees and airport lounge access with our new Nexus Travel Elite Card.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </div>
+        
+        <!-- Featured Cards Section -->
+        <div class="card-section">
+            <!-- Debit Card -->
+            <div class="card-type debit">
+                <div class="card-image" style="background-image: url('https://www.visa.co.in/dam/VCOM/regional/ap/india/global-elements/images/in-visa-gold-card-498x280.png')"></div>
+                <div class="card-details">
+                    <h3 class="card-title">Nexus Debit Card <span class="card-badge">Most Popular</span></h3>
+                    <ul class="card-features">
+                        <li>Instant access to your funds</li>
+                        <li>Visa/Mastercard options</li>
+                        <li>Contactless payments</li>
+                        <li>ATM withdrawals worldwide</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Apply Now</a>
+                        <button onclick="openModal('debitModal')" class="btn btn-secondary">View Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Credit Card -->
+            <div class="card-type credit">
+                <div class="card-image" style="background-image: url('https://www.visa.co.in/dam/VCOM/regional/ap/india/global-elements/images/in-visa-classic-card-498x280.png')"></div>
+                <div class="card-details">
+                    <h3 class="card-title">Nexus Credit Card</h3>
+                    <ul class="card-features">
+                        <li>Gold & Platinum options</li>
+                        <li>Up to 45 days interest-free</li>
+                        <li>Reward points on spending</li>
+                        <li>Travel insurance included</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Apply Now</a>
+                        <button onclick="openModal('creditModal')" class="btn btn-secondary">View Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Travel Card -->
+            <div class="card-type travel">
+                <div class="card-image" style="background-image: url('https://prithvifx.com/wp-content/uploads/2019/11/travel-card.jpg')"></div>
+                <div class="card-details">
+                    <h3 class="card-title">Nexus Travel Card <span class="card-badge">New</span></h3>
+                    <ul class="card-features">
+                        <li>Load multiple currencies</li>
+                        <li>Lock in exchange rates</li>
+                        <li>Worldwide acceptance</li>
+                        <li>Emergency card replacement</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Apply Now</a>
+                        <button onclick="openModal('travelModal')" class="btn btn-secondary">View Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business Card -->
+            <div class="card-type business">
+                <div class="card-image" style="background-image: url('https://www.mastercard.co.in/content/dam/public/mastercardcom/in/en/smb/cards/business-debit-mastercard-1280x720.png')"></div>
+                <div class="card-details">
+                    <h3 class="card-title">Nexus Business Card</h3>
+                    <ul class="card-features">
+                        <li>Separate business expenses</li>
+                        <li>Higher transaction limits</li>
+                        <li>Detailed expense reports</li>
+                        <li>Employee card management</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Apply Now</a>
+                        <button onclick="openModal('businessModal')" class="btn btn-secondary">View Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Student Card -->
+            <div class="card-type student">
+                <div class="card-image" style="background-image: url('https://images.prismic.io/landsbankinn/efbb862a-98c4-49db-87d5-96fe8af38dda_Almennt+-+Kredit.png?auto=compress,format')"></div>
+                <div class="card-details">
+                    <h3 class="card-title">Nexus Student Card</h3>
+                    <ul class="card-features">
+                        <li>No minimum balance</li>
+                        <li>Zero annual fees</li>
+                        <li>Discounts on education</li>
+                        <li>Build credit history</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Apply Now</a>
+                        <button onclick="openModal('studentModal')" class="btn btn-secondary">View Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Premium Card -->
+            <div class="card-type premium">
+                <div class="card-image" style="background-image: url('https://www.insignia.com/wp-content/uploads/2023/08/C-by-Insignia-Plastic-e1692355014563.png')"></div>
+                <div class="card-details">
+                    <h3 class="card-title">Nexus Premium Card <span class="card-badge">Exclusive</span></h3>
+                    <ul class="card-features">
+                        <li>Concierge service</li>
+                        <li>Airport lounge access</li>
+                        <li>Priority customer service</li>
+                        <li>Higher reward points</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Apply Now</a>
+                        <button onclick="openModal('premiumModal')" class="btn btn-secondary">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Debit Card Modal -->
+    <div id="debitModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('debitModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Nexus Debit Card Details</h2>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Card Type:</div>
+                <div class="detail-value">Visa/Mastercard Debit</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Annual Fee:</div>
+                <div class="detail-value">Free for all account holders</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Daily Limit:</div>
+                <div class="detail-value">₹1,00,000 (customizable)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Features:</div>
+                <div class="detail-value">
+                    <ul class="detail-features">
+                        <li>Instant activation upon issuance</li>
+                        <li>Contactless payments up to ₹5,000</li>
+                        <li>Free ATM withdrawals at Nexus ATMs</li>
+                        <li>Real-time transaction alerts</li>
+                        <li>24/7 lost card blocking</li>
+                        <li>Online spending controls</li>
+                        <li>1% cashback on utility payments</li>
+                        <li>Complimentary airport meet & greet (Platinum only)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Eligibility:</div>
+                <div class="detail-value">All Nexus Bank account holders</div>
+            </div>
+            <button class="btn" style="margin-top: 20px; width: 100%;">Apply Now</button>
+        </div>
+    </div>
+
+    <!-- Credit Card Modal -->
+    <div id="creditModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('creditModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Nexus Credit Card Details</h2>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Card Types:</div>
+                <div class="detail-value">Gold (₹1,499/yr), Platinum (₹4,999/yr)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Credit Limit:</div>
+                <div class="detail-value">Starting from ₹50,000 (based on eligibility)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Interest Rate:</div>
+                <div class="detail-value">3.5% per month (42% annual)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Features:</div>
+                <div class="detail-value">
+                    <ul class="detail-features">
+                        <li>Up to 45 days interest-free period</li>
+                        <li>5X reward points on dining & entertainment</li>
+                        <li>1% fuel surcharge waiver</li>
+                        <li>Complimentary airport lounge access (Platinum)</li>
+                        <li>Travel insurance up to ₹50 lakhs</li>
+                        <li>Personal concierge service</li>
+                        <li>EMI conversion options</li>
+                        <li>Contactless payment enabled</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Eligibility:</div>
+                <div class="detail-value">Minimum income ₹25,000/month (Gold), ₹75,000/month (Platinum)</div>
+            </div>
+            <button class="btn" style="margin-top: 20px; width: 100%;">Apply Now</button>
+        </div>
+    </div>
+
+    <!-- Travel Card Modal -->
+    <div id="travelModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('travelModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Nexus Travel Card Details</h2>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Card Type:</div>
+                <div class="detail-value">Multi-currency Forex Card</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Issuance Fee:</div>
+                <div class="detail-value">₹300 (waived for first issuance)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Supported Currencies:</div>
+                <div class="detail-value">USD, EUR, GBP, AUD, JPY, and 12 more</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Features:</div>
+                <div class="detail-value">
+                    <ul class="detail-features">
+                        <li>Lock exchange rates when you load</li>
+                        <li>Load up to 15 currencies simultaneously</li>
+                        <li>Free reloads through Nexus NetBanking</li>
+                        <li>Emergency cash disbursement worldwide</li>
+                        <li>Zero liability on lost/stolen card</li>
+                        <li>24/7 global customer support</li>
+                        <li>Complimentary travel insurance</li>
+                        <li>Mobile app for balance tracking</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Eligibility:</div>
+                <div class="detail-value">Available to all Nexus Bank customers with valid ID proof</div>
+            </div>
+            <button class="btn" style="margin-top: 20px; width: 100%;">Apply Now</button>
+        </div>
+    </div>
+
+    <!-- Business Card Modal -->
+    <div id="businessModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('businessModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Nexus Business Card Details</h2>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Card Type:</div>
+                <div class="detail-value">Visa/Mastercard Business Credit</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Annual Fee:</div>
+                <div class="detail-value">₹2,999 (first year free)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Credit Limit:</div>
+                <div class="detail-value">Starting from ₹2,00,000</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Features:</div>
+                <div class="detail-value">
+                    <ul class="detail-features">
+                        <li>Up to 5 employee cards at no extra cost</li>
+                        <li>Detailed expense categorization</li>
+                        <li>Quarterly business spending reports</li>
+                        <li>3X reward points on office supplies</li>
+                        <li>Dedicated business account manager</li>
+                        <li>Free GST invoice tracking</li>
+                        <li>Fuel surcharge waiver</li>
+                        <li>Business travel insurance</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Eligibility:</div>
+                <div class="detail-value">Registered business with minimum 1 year operation</div>
+            </div>
+            <button class="btn" style="margin-top: 20px; width: 100%;">Apply Now</button>
+        </div>
+    </div>
+
+    <!-- Student Card Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('studentModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Nexus Student Card Details</h2>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Card Type:</div>
+                <div class="detail-value">Visa Student Debit/Credit</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Annual Fee:</div>
+                <div class="detail-value">Free for students</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Credit Limit:</div>
+                <div class="detail-value">Up to ₹25,000 (credit option)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Features:</div>
+                <div class="detail-value">
+                    <ul class="detail-features">
+                        <li>Special discounts on educational materials</li>
+                        <li>No minimum balance requirement</li>
+                        <li>Free digital banking access</li>
+                        <li>10% cashback on book purchases</li>
+                        <li>Low-interest credit building option</li>
+                        <li>Parental control features</li>
+                        <li>Free ATM withdrawals nationwide</li>
+                        <li>Budgeting tools for students</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Eligibility:</div>
+                <div class="detail-value">Students aged 16+ with valid student ID</div>
+            </div>
+            <button class="btn" style="margin-top: 20px; width: 100%;">Apply Now</button>
+        </div>
+    </div>
+
+    <!-- Premium Card Modal -->
+    <div id="premiumModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('premiumModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Nexus Premium Card Details</h2>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Card Type:</div>
+                <div class="detail-value">Visa Infinite/Mastercard World Elite</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Annual Fee:</div>
+                <div class="detail-value">₹15,000 (includes family card)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Credit Limit:</div>
+                <div class="detail-value">Starting from ₹5,00,000</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Features:</div>
+                <div class="detail-value">
+                    <ul class="detail-features">
+                        <li>Unlimited airport lounge access</li>
+                        <li>24/7 personal concierge service</li>
+                        <li>Complimentary golf course access</li>
+                        <li>5X reward points on all spending</li>
+                        <li>Comprehensive travel insurance</li>
+                        <li>Luxury hotel upgrades</li>
+                        <li>Priority pass membership</li>
+                        <li>Exclusive event invitations</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Eligibility:</div>
+                <div class="detail-value">Minimum income ₹2,00,000/month or ₹25,00,000 NRV</div>
+            </div>
+            <button class="btn" style="margin-top: 20px; width: 100%;">Apply Now</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.className === "modal") {
+                event.target.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+
+        // Add alert functionality to Apply Now buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply Now buttons in cards
+            document.querySelectorAll('.btn-group .btn:first-child').forEach(btn => {
+                if (btn.getAttribute('href') === '#') {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const cardType = this.closest('.card-details').querySelector('.card-title').textContent;
+                        alert(`Redirecting to ${cardType} application form...`);
+                    });
+                }
+            });
+
+            // Promo banner button
+            document.querySelector('.promo-content .btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Redirecting to Travel Elite Card details page...');
+            });
+
+            // Apply Now buttons in modals
+            document.querySelectorAll('.modal-content .btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const modalTitle = this.closest('.modal-content').querySelector('.modal-header h2').textContent;
+                    alert(`Starting application for ${modalTitle}...`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

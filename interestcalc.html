@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Purpose Loan Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .calculator-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .loan-type-selector {
+            margin-bottom: 20px;
+        }
+        .loan-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .loan-type {
+            flex: 1;
+            min-width: 120px;
+        }
+        .loan-type input[type="radio"] {
+            display: none;
+        }
+        .loan-type label {
+            display: block;
+            padding: 12px 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .loan-type input[type="radio"]:checked + label {
+            background-color: #3498db;
+            color: white;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        .range-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .range-container input[type="range"] {
+            flex: 1;
+        }
+        .range-value {
+            min-width: 60px;
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #27ae60;
+        }
+        .result-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            display: none;
+        }
+        .result-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .result-item {
+            background-color: white;
+            padding: 12px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .result-label {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        .result-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .currency {
+            color: #3498db;
+        }
+        .amortization-btn {
+            background-color: #3498db;
+            margin-top: 20px;
+        }
+        .amortization-btn:hover {
+            background-color: #2980b9;
+        }
+        .amortization-table {
+            margin-top: 20px;
+            display: none;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        @media (max-width: 600px) {
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+            .loan-type {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Loan Calculator</h1>
+        
+        <div class="loan-type-selector">
+            <label>Select Loan Type:</label>
+            <div class="loan-types">
+                <div class="loan-type">
+                    <input type="radio" id="home-loan" name="loan-type" value="home" checked>
+                    <label for="home-loan">Home Loan</label>
+                </div>
+                <div class="loan-type">
+                    <input type="radio" id="vehicle-loan" name="loan-type" value="vehicle">
+                    <label for="vehicle-loan">Vehicle Loan</label>
+                </div>
+                <div class="loan-type">
+                    <input type="radio" id="property-loan" name="loan-type" value="property">
+                    <label for="property-loan">Loan Against Property</label>
+                </div>
+                <div class="loan-type">
+                    <input type="radio" id="education-loan" name="loan-type" value="education">
+                    <label for="education-loan">Education Loan</label>
+                </div>
+                <div class="loan-type">
+                    <input type="radio" id="personal-loan" name="loan-type" value="personal">
+                    <label for="personal-loan">Personal Loan</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="loan-amount">Loan Amount (₹)</label>
+            <div class="range-container">
+                <input type="range" id="loan-amount-range" min="50000" max="5000000" step="50000" value="1000000">
+                <span class="range-value" id="loan-amount-value">10,00,000</span>
+            </div>
+            <input type="number" id="loan-amount" min="50000" max="50000000" value="1000000">
+        </div>
+        
+        <div class="form-group">
+            <label for="loan-tenure">Loan Tenure (years)</label>
+            <div class="range-container">
+                <input type="range" id="loan-tenure-range" min="1" max="30" value="10">
+                <span class="range-value" id="loan-tenure-value">10</span>
+            </div>
+            <input type="number" id="loan-tenure" min="1" max="30" value="10">
+        </div>
+        
+        <div class="form-group">
+            <label for="interest-rate">Interest Rate (% p.a.)</label>
+            <input type="number" id="interest-rate" step="0.01" value="8.50">
+        </div>
+        
+        <button id="calculate-btn">Calculate EMI</button>
+        
+        <div id="result-container" class="result-container">
+            <div class="result-title">Loan Calculation Results</div>
+            <div class="result-grid">
+                <div class="result-item">
+                    <div class="result-label">Monthly EMI</div>
+                    <div class="result-value"><span class="currency">₹</span> <span id="emi-amount">0</span></div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Total Interest</div>
+                    <div class="result-value"><span class="currency">₹</span> <span id="total-interest">0</span></div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Total Payment</div>
+                    <div class="result-value"><span class="currency">₹</span> <span id="total-payment">0</span></div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Loan Amount</div>
+                    <div class="result-value"><span class="currency">₹</span> <span id="principal-amount">0</span></div>
+                </div>
+            </div>
+            
+            <button id="amortization-btn" class="amortization-btn">Show Amortization Schedule</button>
+            
+            <div id="amortization-table" class="amortization-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Principal Paid</th>
+                            <th>Interest Paid</th>
+                            <th>Remaining Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="amortization-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default interest rates based on loan type
+            const loanTypeRadios = document.querySelectorAll('input[name="loan-type"]');
+            const interestRateInput = document.getElementById('interest-rate');
+            
+            // Default rates for different loan types
+            const defaultRates = {
+                'home': 8.10,
+                'vehicle': 9.50,
+                'property': 10.25,
+                'education': 11.00,
+                'personal': 12.50
+            };
+            
+            // Update interest rate when loan type changes
+            loanTypeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    interestRateInput.value = defaultRates[this.value];
+                });
+            });
+            
+            // Sync range sliders with number inputs
+            const loanAmountRange = document.getElementById('loan-amount-range');
+            const loanAmountInput = document.getElementById('loan-amount');
+            const loanAmountValue = document.getElementById('loan-amount-value');
+            
+            const loanTenureRange = document.getElementById('loan-tenure-range');
+            const loanTenureInput = document.getElementById('loan-tenure');
+            const loanTenureValue = document.getElementById('loan-tenure-value');
+            
+            // Format currency
+            function formatCurrency(amount) {
+                return new Intl.NumberFormat('en-IN').format(amount);
+            }
+            
+            // Update loan amount
+            function updateLoanAmount(value) {
+                loanAmountInput.value = value;
+                loanAmountRange.value = value;
+                loanAmountValue.textContent = formatCurrency(value);
+            }
+            
+            // Update loan tenure
+            function updateLoanTenure(value) {
+                loanTenureInput.value = value;
+                loanTenureRange.value = value;
+                loanTenureValue.textContent = value;
+            }
+            
+            // Event listeners for loan amount
+            loanAmountRange.addEventListener('input', function() {
+                updateLoanAmount(this.value);
+            });
+            
+            loanAmountInput.addEventListener('input', function() {
+                if (this.value > 50000000) this.value = 50000000;
+                if (this.value < 50000) this.value = 50000;
+                updateLoanAmount(this.value);
+            });
+            
+            // Event listeners for loan tenure
+            loanTenureRange.addEventListener('input', function() {
+                updateLoanTenure(this.value);
+            });
+            
+            loanTenureInput.addEventListener('input', function() {
+                if (this.value > 30) this.value = 30;
+                if (this.value < 1) this.value = 1;
+                updateLoanTenure(this.value);
+            });
+            
+            // Calculate EMI
+            document.getElementById('calculate-btn').addEventListener('click', calculateEMI);
+            
+            // Show amortization schedule
+            document.getElementById('amortization-btn').addEventListener('click', toggleAmortization);
+            
+            function calculateEMI() {
+                // Get input values
+                const loanAmount = parseFloat(loanAmountInput.value);
+                const loanTerm = parseFloat(loanTenureInput.value);
+                const interestRate = parseFloat(interestRateInput.value);
+                
+                // Validate inputs
+                if (isNaN(loanAmount)) {
+                    alert("Please enter a valid loan amount");
+                    return;
+                }
+                if (isNaN(loanTerm) || loanTerm <= 0) {
+                    alert("Please enter a valid loan term");
+                    return;
+                }
+                if (isNaN(interestRate)) {
+                    alert("Please enter a valid interest rate");
+                    return;
+                }
+                
+                // Convert annual rate to monthly and term to months
+                const monthlyRate = interestRate / 12 / 100;
+                const months = loanTerm * 12;
+                
+                // Calculate EMI using the formula: P * r * (1 + r)^n / ((1 + r)^n - 1)
+                const emi = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months) / 
+                            (Math.pow(1 + monthlyRate, months) - 1);
+                
+                // Calculate total payment and total interest
+                const totalPayment = emi * months;
+                const totalInterest = totalPayment - loanAmount;
+                
+                // Display results
+                document.getElementById('emi-amount').textContent = formatCurrency(emi.toFixed(2));
+                document.getElementById('total-interest').textContent = formatCurrency(totalInterest.toFixed(2));
+                document.getElementById('total-payment').textContent = formatCurrency(totalPayment.toFixed(2));
+                document.getElementById('principal-amount').textContent = formatCurrency(loanAmount.toFixed(2));
+                
+                // Show result container
+                document.getElementById('result-container').style.display = 'block';
+                
+                // Generate amortization schedule
+                generateAmortizationSchedule(loanAmount, monthlyRate, emi, months);
+            }
+            
+            function generateAmortizationSchedule(principal, monthlyRate, emi, months) {
+                let balance = principal;
+                const amortizationBody = document.getElementById('amortization-body');
+                amortizationBody.innerHTML = '';
+                
+                let year = 1;
+                let yearlyPrincipal = 0;
+                let yearlyInterest = 0;
+                
+                for (let i = 1; i <= months; i++) {
+                    const interest = balance * monthlyRate;
+                    const principalPaid = emi - interest;
+                    
+                    yearlyPrincipal += principalPaid;
+                    yearlyInterest += interest;
+                    
+                    balance -= principalPaid;
+                    
+                    // Add yearly summary
+                    if (i % 12 === 0 || i === months) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${year}</td>
+                            <td>₹${formatCurrency(yearlyPrincipal.toFixed(2))}</td>
+                            <td>₹${formatCurrency(yearlyInterest.toFixed(2))}</td>
+                            <td>₹${formatCurrency(Math.max(0, balance).toFixed(2))}</td>
+                        `;
+                        amortizationBody.appendChild(row);
+                        
+                        year++;
+                        yearlyPrincipal = 0;
+                        yearlyInterest = 0;
+                    }
+                }
+            }
+            
+            function toggleAmortization() {
+                const table = document.getElementById('amortization-table');
+                const btn = document.getElementById('amortization-btn');
+                
+                if (table.style.display === 'none' || table.style.display === '') {
+                    table.style.display = 'block';
+                    btn.textContent = 'Hide Amortization Schedule';
+                } else {
+                    table.style.display = 'none';
+                    btn.textContent = 'Show Amortization Schedule';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

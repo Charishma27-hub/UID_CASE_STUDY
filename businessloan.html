@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Loans | Flexible Financing Solutions</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #1a237e;
+            --primary-light: #e8eaf6;
+            --primary-dark: #000051;
+            --accent-color: #534bae;
+            --text-dark: #212121;
+            --text-light: #757575;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary-light);
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%231a237e" fill-opacity="0.05" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: 100% 100%;
+            z-index: 0;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h2 {
+            color: var(--primary-color);
+            font-size: 2.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1em;
+            color: var(--text-dark);
+        }
+        
+        /* Loan Options */
+        .loan-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 60px;
+            gap: 30px;
+        }
+        
+        .loan-card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            flex: 1;
+            min-width: 250px;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .loan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+        }
+        
+        .loan-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.5em;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            font-weight: 600;
+        }
+        
+        .loan-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .loan-card ul {
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .loan-card li {
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            position: relative;
+        }
+        
+        .loan-card li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%23ffffff" fill-opacity="0.05" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: 100% 100%;
+            z-index: 0;
+        }
+        
+        .cta .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            margin-top: 0;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+        
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .phone-number {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+            font-size: 1em;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn-light {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+        
+        .btn-light:hover {
+            background-color: var(--white);
+            color: var(--primary-dark);
+            border-color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        
+        footer p {
+            margin: 5px 0;
+            opacity: 0.8;
+        }
+        
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+            margin: 0 10px;
+        }
+        
+        footer a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .loan-options {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .loan-card {
+                width: 100%;
+            }
+            
+            header h1 {
+                font-size: 2.2em;
+            }
+            
+            .hero h2, .cta h2 {
+                font-size: 1.8em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 30px 0;
+            }
+            
+            .hero, .cta {
+                padding: 40px 20px;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                display: block;
+                margin: 20px auto;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Business Loans</h1>
+            <p>Flexible financing solutions for your business needs</p>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>Grow Your Business With Confidence</h2>
+            <p>Whether you're starting, expanding, or managing your business, we offer competitive rates and personalized service to help you succeed.</p>
+            <a href="#apply" class="btn btn-light" id="apply">Apply Now</a>
+        </div>
+    </section>
+    
+    <div class="container">
+        <section class="loan-options">
+            <div class="loan-card">
+                <h3>Start-Up Loans</h3>
+                <p>Get the funding you need to launch your business idea. Flexible terms and competitive rates for new entrepreneurs.</p>
+                <ul>
+                    <li>Loans up to $250,000</li>
+                    <li>Fixed or variable rates</li>
+                    <li>6-60 month terms</li>
+                </ul>
+                <a href="#" class="btn" id="sorry1">Learn More</a>
+            </div>
+            
+            <div class="loan-card">
+                <h3>Expansion Loans</h3>
+                <p>Take your business to the next level with capital for growth, equipment, or new locations.</p>
+                <ul>
+                    <li>Loans up to $1,000,000</li>
+                    <li>Competitive interest rates</li>
+                    <li>Custom repayment plans</li>
+                </ul>
+                <a href="#" class="btn" id="sorry2">Learn More</a>
+            </div>
+            
+            <div class="loan-card">
+                <h3>Working Capital</h3>
+                <p>Manage cash flow and cover operational expenses with flexible working capital solutions.</p>
+                <ul>
+                    <li>Quick approval process</li>
+                    <li>Lines of credit available</li>
+                    <li>No collateral options</li>
+                </ul>
+                <a href="#" class="btn" id="sorry3">Learn More</a>
+            </div>
+        </section>
+        
+        <section class="cta" id="apply">
+            <h2>Ready to Grow Your Business?</h2>
+            <p>Our loan specialists are ready to help you find the perfect financing solution.</p>
+            <a href="#" class="btn btn-light" id="applynow" >Apply Now</a>
+            <div class="phone-number">1-800-BIZ-LOAN</div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Business Loans. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="#">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+    <script>
+    document.getElementById("apply").addEventListener("click", function(event) {
+    event.preventDefault(); // prevent the default anchor action (scroll to top)
+    alert("Sorry! The backend is not yet connected to proceed ");
+  });
+  document.getElementById("sorry1").addEventListener("click", function(event) {
+    event.preventDefault(); // prevent the default anchor action (scroll to top)
+    alert("Sorry! The backend is not yet connected to proceed ");
+  });
+  document.getElementById("sorry2").addEventListener("click", function(event) {
+    event.preventDefault(); // prevent the default anchor action (scroll to top)
+    alert("Sorry! The backend is not yet connected to proceed ");
+  });
+  document.getElementById("sorry3").addEventListener("click", function(event) {
+    event.preventDefault(); // prevent the default anchor action (scroll to top)
+    alert("Sorry! The backend is not yet connected to proceed ");
+  });
+  document.getElementById("applynow").addEventListener("click", function(event) {
+    event.preventDefault(); // prevent the default anchor action (scroll to top)
+    alert("Sorry! The backend is not yet connected to proceed ");
+  });
+</script>
+</body>
+</html>

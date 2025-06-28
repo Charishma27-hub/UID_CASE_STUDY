@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Credit Cards | Nexus Banking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(rgba(26, 35, 126, 0.8), rgba(26, 35, 126, 0.9)), 
+                        url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .main-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .main-header p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .header-cta {
+            display: inline-block;
+            background-color: white;
+            color: #1a237e;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .header-cta:hover {
+            background-color: #f5f5f5;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            color: #1a237e;
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 32px;
+        }
+        
+        .cards-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 30%;
+            min-width: 300px;
+            flex-grow: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            color: #1a237e;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        .card ul {
+            list-style-type: none;
+            margin-bottom: 30px;
+        }
+        
+        .card li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .card li:before {
+            content: "✓";
+            color: #1a237e;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .card .highlight {
+            font-weight: bold;
+            color: #1a237e;
+        }
+        
+        .card-cta {
+            display: block;
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .card-cta:hover {
+            background-color: #303f9f;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(26, 35, 126, 0.3);
+        }
+        
+        /* Expanded Content Sections */
+        .expanded-content {
+            background-color: #f9f9f9;
+            padding: 60px 20px;
+            margin: 60px 0;
+            display: none;
+        }
+        
+        .expanded-content.active {
+            display: block;
+        }
+        
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .content-columns {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .content-column {
+            flex: 1;
+        }
+        
+        .content-column h3 {
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .content-column p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .close-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 30px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+            }
+            
+            .card {
+                width: 100%;
+            }
+            
+            .content-columns {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Background Image -->
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Business Credit Cards</h1>
+            <p>Power your business growth with premium credit solutions designed for entrepreneurs and enterprises. Earn rewards, streamline expenses, and enjoy exclusive benefits.</p>
+            <a href="#cards" class="header-cta">Explore Cards</a>
+        </div>
+    </header>
+    
+    <!-- Main Cards Section -->
+    <div class="container" id="cards">
+        <h2 class="section-title">Choose the Right Card for Your Business</h2>
+        
+        <div class="cards-container">
+            <!-- Business Cash Card -->
+            <div class="card">
+                <h3>Nexus Business Cash</h3>
+                <ul>
+                    <li><span class="highlight">3% cash back</span> on office supplies and internet services</li>
+                    <li><span class="highlight">2% cash back</span> on dining and gas</li>
+                    <li>No annual fee</li>
+                    <li>Free employee cards with individual limits</li>
+                    <li>Detailed quarterly spending reports</li>
+                    <li>Fraud protection and purchase insurance</li>
+                </ul>
+                <a href="#" class="card-cta show-apply" data-card="business-cash">Apply Now</a>
+                <a href="#" class="card-cta show-learn-more" data-card="business-cash" style="background-color: #3949ab; margin-top: 10px;">Learn More</a>
+            </div>
+            
+            <!-- Travel Elite Card -->
+            <div class="card">
+                <h3>Nexus Travel Elite</h3>
+                <ul>
+                    <li><span class="highlight">3x points</span> on travel and dining</li>
+                    <li><span class="highlight">$200 annual travel credit</span></li>
+                    <li>Priority boarding and airport lounge access</li>
+                    <li>Global entry/TSA Pre✓® fee credit</li>
+                    <li>No foreign transaction fees</li>
+                    <li>Travel accident insurance</li>
+                </ul>
+                <a href="#" class="card-cta show-apply" data-card="travel-elite">Apply Now</a>
+                <a href="#" class="card-cta show-learn-more" data-card="travel-elite" style="background-color: #3949ab; margin-top: 10px;">Learn More</a>
+            </div>
+            
+            <!-- Corporate Platinum Card -->
+            <div class="card">
+                <h3>Nexus Corporate Platinum</h3>
+                <ul>
+                    <li><span class="highlight">5% discount</span> on shipping and advertising</li>
+                    <li>Extended payment terms (up to 60 days)</li>
+                    <li>Dedicated account manager</li>
+                    <li>Advanced fraud protection</li>
+                    <li>Customizable spending controls</li>
+                    <li>Volume discounts on large purchases</li>
+                </ul>
+                <a href="#" class="card-cta show-apply" data-card="corporate-platinum">Apply Now</a>
+                <a href="#" class="card-cta show-learn-more" data-card="corporate-platinum" style="background-color: #3949ab; margin-top: 10px;">Learn More</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Business Cash Card Expanded Sections -->
+    <section class="expanded-content" id="business-cash-apply">
+        <div class="content-wrapper">
+            <h2 class="section-title">Apply for Nexus Business Cash</h2>
+            <div class="content-columns">
+                <div class="content-column">
+                    <h3>Why This Card?</h3>
+                    <p>The Nexus Business Cash Card is perfect for small to medium businesses looking to maximize everyday spending. Earn unlimited 3% cash back on office supplies, internet, and phone services, plus 2% on dining and gas.</p>
+                    <p><strong>Approval Requirements:</strong></p>
+                    <ul>
+                        <li>Minimum 1 year in business</li>
+                        <li>$50,000+ annual revenue</li>
+                        <li>Good personal credit score (680+)</li>
+                    </ul>
+                </div>
+                <div class="content-column">
+                    <h3>Application Process</h3>
+                    <p>Complete our simple online application in minutes:</p>
+                    <ol>
+                        <li>Provide basic business information</li>
+                        <li>Enter financial details</li>
+                        <li>Verify identity</li>
+                        <li>Get instant approval decision</li>
+                    </ol>
+                    <a href="#" class="card-cta" style="display: inline-block; padding: 12px 30px; margin-top: 20px;">Start Application</a>
+                </div>
+            </div>
+            <div class="close-btn" data-close="business-cash-apply">Back to Cards</div>
+        </div>
+    </section>
+    
+    <section class="expanded-content" id="business-cash-learn">
+        <div class="content-wrapper">
+            <h2 class="section-title">Nexus Business Cash Details</h2>
+            <div class="content-columns">
+                <div class="content-column">
+                    <h3>Rewards Program</h3>
+                    <p>Our cash back program puts money back in your business:</p>
+                    <ul>
+                        <li>3% cash back on office supplies, internet, and phone services</li>
+                        <li>2% cash back on dining and gas purchases</li>
+                        <li>1% cash back on all other purchases</li>
+                        <li>No limit to cash back earnings</li>
+                        <li>Automatic redemption as statement credit</li>
+                    </ul>
+                </div>
+                <div class="content-column">
+                    <h3>Additional Benefits</h3>
+                    <ul>
+                        <li><strong>Employee Cards:</strong> Issue unlimited cards with individual spending limits</li>
+                        <li><strong>Expense Reports:</strong> Automated categorization and export options</li>
+                        <li><strong>Purchase Protection:</strong> 90-day damage/theft protection</li>
+                        <li><strong>Extended Warranty:</strong> 1 year extension on manufacturer warranties</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="close-btn" data-close="business-cash-learn">Back to Cards</div>
+        </div>
+    </section>
+    
+    <!-- Travel Elite Card Expanded Sections -->
+    <section class="expanded-content" id="travel-elite-apply">
+        <div class="content-wrapper">
+            <h2 class="section-title">Apply for Nexus Travel Elite</h2>
+            <div class="content-columns">
+                <div class="content-column">
+                    <h3>Why This Card?</h3>
+                    <p>The Nexus Travel Elite Card is designed for businesses with frequent travel needs. Enjoy premium travel benefits and earn 3x points on all travel and dining purchases.</p>
+                    <p><strong>Approval Requirements:</strong></p>
+                    <ul>
+                        <li>Minimum 2 years in business</li>
+                        <li>$100,000+ annual revenue</li>
+                        <li>Excellent personal credit score (720+)</li>
+                        <li>$95 annual fee (waived first year)</li>
+                    </ul>
+                </div>
+                <div class="content-column">
+                    <h3>Application Process</h3>
+                    <p>Our travel card application includes:</p>
+                    <ol>
+                        <li>Business and personal information</li>
+                        <li>Travel spending estimates</li>
+                        <li>Financial verification</li>
+                        <li>Approval within 2 business days</li>
+                    </ol>
+                    <a href="#" class="card-cta" style="display: inline-block; padding: 12px 30px; margin-top: 20px;">Start Application</a>
+                </div>
+            </div>
+            <div class="close-btn" data-close="travel-elite-apply">Back to Cards</div>
+        </div>
+    </section>
+    
+    <section class="expanded-content" id="travel-elite-learn">
+        <div class="content-wrapper">
+            <h2 class="section-title">Nexus Travel Elite Details</h2>
+            <div class="content-columns">
+                <div class="content-column">
+                    <h3>Travel Benefits</h3>
+                    <p>Premium travel perks for your business:</p>
+                    <ul>
+                        <li><strong>$200 Annual Travel Credit:</strong> For airline fees, baggage, and more</li>
+                        <li><strong>Airport Lounge Access:</strong> 10 free visits annually</li>
+                        <li><strong>TSA Pre✓/Global Entry:</strong> $100 application fee credit</li>
+                        <li><strong>Travel Insurance:</strong> Includes trip cancellation and lost luggage</li>
+                        <li><strong>No Foreign Transaction Fees:</strong> Save on international purchases</li>
+                    </ul>
+                </div>
+                <div class="content-column">
+                    <h3>Rewards Structure</h3>
+                    <ul>
+                        <li>3x points on flights, hotels, dining, and rideshares</li>
+                        <li>2x points on other travel purchases</li>
+                        <li>1x points on all other spending</li>
+                        <li>50% bonus when redeeming for travel through Nexus</li>
+                        <li>Transfer points to 15+ airline and hotel partners</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="close-btn" data-close="travel-elite-learn">Back to Cards</div>
+        </div>
+    </section>
+    
+    <!-- Corporate Platinum Card Expanded Sections -->
+    <section class="expanded-content" id="corporate-platinum-apply">
+        <div class="content-wrapper">
+            <h2 class="section-title">Apply for Nexus Corporate Platinum</h2>
+            <div class="content-columns">
+                <div class="content-column">
+                    <h3>Why This Card?</h3>
+                    <p>The Corporate Platinum Card is our premium offering for established businesses with sophisticated financial needs and high spending volumes.</p>
+                    <p><strong>Approval Requirements:</strong></p>
+                    <ul>
+                        <li>Minimum 3 years in business</li>
+                        <li>$1M+ annual revenue</li>
+                        <li>Corporate structure (not sole proprietorship)</li>
+                        <li>$295 annual fee</li>
+                    </ul>
+                </div>
+                <div class="content-column">
+                    <h3>Application Process</h3>
+                    <p>This premium card requires additional verification:</p>
+                    <ol>
+                        <li>Initial online information request</li>
+                        <li>Document submission (financials, tax returns)</li>
+                        <li>Dedicated account manager assignment</li>
+                        <li>Custom credit limit negotiation</li>
+                    </ol>
+                    <a href="#" class="card-cta" style="display: inline-block; padding: 12px 30px; margin-top: 20px;">Contact Sales</a>
+                </div>
+            </div>
+            <div class="close-btn" data-close="corporate-platinum-apply">Back to Cards</div>
+        </div>
+    </section>
+    
+    <section class="expanded-content" id="corporate-platinum-learn">
+        <div class="content-wrapper">
+            <h2 class="section-title">Nexus Corporate Platinum Details</h2>
+            <div class="content-columns">
+                <div class="content-column">
+                    <h3>Corporate Benefits</h3>
+                    <ul>
+                        <li><strong>5% Discounts:</strong> On shipping (FedEx, UPS) and advertising (Google, Facebook)</li>
+                        <li><strong>Extended Terms:</strong> Up to 60 days payment flexibility</li>
+                        <li><strong>Volume Discounts:</strong> Earn rebates on annual spending over $250k</li>
+                        <li><strong>Dedicated Support:</strong> 24/7 access to corporate account manager</li>
+                    </ul>
+                </div>
+                <div class="content-column">
+                    <h3>Financial Controls</h3>
+                    <ul>
+                        <li><strong>Custom Spending Limits:</strong> By department, employee, or category</li>
+                        <li><strong>Advanced Analytics:</strong> Real-time spending dashboards</li>
+                        <li><strong>AP Integration:</strong> Sync with major accounting systems</li>
+                        <li><strong>Virtual Cards:</strong> Generate unlimited single-use card numbers</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="close-btn" data-close="corporate-platinum-learn">Back to Cards</div>
+        </div>
+    </section>
+    
+    <script>
+        // Show/hide expanded content sections
+        document.querySelectorAll('.show-apply, .show-learn-more').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const cardType = this.getAttribute('data-card');
+                const action = this.classList.contains('show-apply') ? 'apply' : 'learn';
+                
+                // Hide all expanded sections first
+                document.querySelectorAll('.expanded-content').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show the selected section
+                document.getElementById(`${cardType}-${action}`).classList.add('active');
+                
+                // Scroll to the section
+                document.getElementById(`${cardType}-${action}`).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Close buttons
+        document.querySelectorAll('.close-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const sectionId = this.getAttribute('data-close');
+                document.getElementById(sectionId).classList.remove('active');
+                
+                // Scroll back to cards
+                document.getElementById('cards').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

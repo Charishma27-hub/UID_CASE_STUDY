@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Loan Solutions</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #003366;
+            --accent-color: #ff6b00;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .loans-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .loans-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .loans-header h1 {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .loans-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .loan-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .loan-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .loan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .loan-card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .loan-card-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .loan-card-body {
+            padding: 25px;
+        }
+        
+        .loan-features {
+            margin: 20px 0;
+        }
+        
+        .loan-features li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .loan-features li:before {
+            content: "•";
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 5px;
+            top: -5px;
+        }
+        
+        .loan-amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .loan-cta {
+            text-align: center;
+            margin-top: 25px;
+        }
+        
+        .loan-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .loan-button:hover {
+            background-color: #e05d00;
+        }
+        
+        .loan-terms {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .loan-highlight {
+            background-color: rgba(0, 86, 179, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="loans-container">
+        <div class="loans-header">
+            <h1>Corporate Loan Solutions</h1>
+            <p>Customized financing options to support your business expansion, equipment purchases, and strategic initiatives.</p>
+        </div>
+        
+        <div class="loan-products">
+            <div class="loan-card">
+                <div class="loan-card-header">
+                    <h2>Term Loans</h2>
+                </div>
+                <div class="loan-card-body">
+                    <p>Fixed amount loans with structured repayment schedules for your capital needs.</p>
+                    
+                    <ul class="loan-features">
+                        <li>Financing for equipment and facilities</li>
+                        <li>Flexible terms from 1-10 years</li>
+                        <li>Competitive fixed or variable rates</li>
+                        <li>Loan amounts from $50,000 to $25M+</li>
+                    </ul>
+                    
+                    <div class="loan-amount">
+                        Starting at <span class="loan-highlight">4.25% APR</span>
+                    </div>
+                    
+                    <div class="loan-cta">
+                        <a href="#" class="loan-button">Apply Now</a>
+                        <p class="loan-terms">Rates subject to change</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loan-card">
+                <div class="loan-card-header">
+                    <h2>Commercial Real Estate</h2>
+                </div>
+                <div class="loan-card-body">
+                    <p>Financing solutions for your property acquisitions, construction, and refinancing.</p>
+                    
+                    <ul class="loan-features">
+                        <li>Purchase or refinance commercial property</li>
+                        <li>Construction and development loans</li>
+                        <li>Up to 80% LTV</li>
+                        <li>Terms up to 25 years</li>
+                    </ul>
+                    
+                    <div class="loan-amount">
+                        Starting at <span class="loan-highlight">5.00% APR</span>
+                    </div>
+                    
+                    <div class="loan-cta">
+                        <a href="#" class="loan-button">Get Pre-Approved</a>
+                        <p class="loan-terms">Based on creditworthiness</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loan-card">
+                <div class="loan-card-header">
+                    <h2>Equipment Financing</h2>
+                </div>
+                <div class="loan-card-body">
+                    <p>Lease or loan options for your business equipment and technology needs.</p>
+                    
+                    <ul class="loan-features">
+                        <li>Financing for new and used equipment</li>
+                        <li>Tax-advantaged leasing options</li>
+                        <li>Up to 100% financing available</li>
+                        <li>Fast approval process</li>
+                    </ul>
+                    
+                    <div class="loan-amount">
+                        Starting at <span class="loan-highlight">3.99% APR</span>
+                    </div>
+                    
+                    <div class="loan-cta">
+                        <a href="#" class="loan-button">Request Quote</a>
+                        <p class="loan-terms">Special programs available</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loan-card">
+                <div class="loan-card-header">
+                    <h2>Business Acquisition</h2>
+                </div>
+                <div class="loan-card-body">
+                    <p>Funding solutions for purchasing existing businesses or management buyouts.</p>
+                    
+                    <ul class="loan-features">
+                        <li>Finance up to 90% of purchase price</li>
+                        <li>SBA loan options available</li>
+                        <li>Seller note alternatives</li>
+                        <li>Expert M&A advisory services</li>
+                    </ul>
+                    
+                    <div class="loan-amount">
+                        Starting at <span class="loan-highlight">5.50% APR</span>
+                    </div>
+                    
+                    <div class="loan-cta">
+                        <a href="#" class="loan-button">Contact Specialist</a>
+                        <p class="loan-terms">Custom solutions available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

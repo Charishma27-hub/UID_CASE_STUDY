@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Management Solutions</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #003366;
+            --accent-color: #ff6b00;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+        }
+        
+        .cash-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .cash-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .cash-header h1 {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .cash-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cash-solutions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .cash-solution {
+            background: white;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 550px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            transition: transform 0.3s;
+        }
+        
+        .cash-solution:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cash-image {
+            flex: 0 0 40%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        .cash-details {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        .cash-details h2 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .cash-details p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .cash-features {
+            margin: 20px 0;
+        }
+        
+        .cash-features li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .cash-features li:before {
+            content: "✓";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .cash-cta {
+            margin-top: 25px;
+        }
+        
+        .cash-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .cash-button:hover {
+            background-color: #004494;
+        }
+        
+        .cash-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-left: 15px;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .cash-solution {
+                flex-direction: column;
+            }
+            
+            .cash-image {
+                padding: 20px;
+                flex: 0 0 auto;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="cash-container">
+        <div class="cash-header">
+            <h1>Cash Management Solutions</h1>
+            <p>Efficient management of your company's cash flows and liquidity with our comprehensive suite of tools.</p>
+        </div>
+        
+        <div class="cash-solutions">
+            <div class="cash-solution">
+                <div class="cash-image">
+                    <i class="fas fa-money-bill-transfer"></i>
+                </div>
+                <div class="cash-details">
+                    <h2>Payment Solutions</h2>
+                    <p>Streamline your payment processes with our automated solutions.</p>
+                    
+                    <ul class="cash-features">
+                        <li>Bulk payment processing</li>
+                        <li>Automated payroll services</li>
+                        <li>Vendor payment solutions</li>
+                        <li>Real-time payment tracking</li>
+                    </ul>
+                    
+                    <div class="cash-cta">
+                        <a href="#" class="cash-button">Get Started</a>
+                        <a href="#" class="cash-link">Learn more</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cash-solution">
+                <div class="cash-image">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <div class="cash-details">
+                    <h2>Cash Flow Analytics</h2>
+                    <p>Gain insights into your cash position with powerful analytics tools.</p>
+                    
+                    <ul class="cash-features">
+                        <li>Real-time cash position monitoring</li>
+                        <li>Forecasting and reporting tools</li>
+                        <li>Customizable dashboards</li>
+                        <li>Automated alerts</li>
+                    </ul>
+                    
+                    <div class="cash-cta">
+                        <a href="#" class="cash-button">View Demo</a>
+                        <a href="#" class="cash-link">See features</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cash-solution">
+                <div class="cash-image">
+                    <i class="fas fa-piggy-bank"></i>
+                </div>
+                <div class="cash-details">
+                    <h2>Liquidity Management</h2>
+                    <p>Optimize your cash reserves and improve yield on surplus funds.</p>
+                    
+                    <ul class="cash-features">
+                        <li>Sweep accounts</li>
+                        <li>Investment options for surplus cash</li>
+                        <li>Centralized cash pooling</li>
+                        <li>Multi-currency solutions</li>
+                    </ul>
+                    
+                    <div class="cash-cta">
+                        <a href="#" class="cash-button">Contact Specialist</a>
+                        <a href="#" class="cash-link">Our approach</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cash-solution">
+                <div class="cash-image">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <div class="cash-details">
+                    <h2>Receivables Management</h2>
+                    <p>Accelerate collections and improve your working capital cycle.</p>
+                    
+                    <ul class="cash-features">
+                        <li>Lockbox services</li>
+                        <li>Electronic invoice presentment</li>
+                        <li>Automated reconciliation</li>
+                        <li>Collections management</li>
+                    </ul>
+                    
+                    <div class="cash-cta">
+                        <a href="#" class="cash-button">Explore Options</a>
+                        <a href="#" class="cash-link">Case studies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Bank - Investment Solutions</title>
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #004080;
+            --accent-color: #0066cc; /* Changed from orange to blue */
+            --light-color: #f5f5f5;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+        }
+        
+        header {
+            background-color: #1e4b8e;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        nav ul li a.active {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 64, 128, 0.8)), url('images/investment-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #0055aa;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1e4b8e;
+            color:#1e4b8e;
+        }
+        
+        .btn-outline:hover {
+            background-color: #1e4b8e;
+            color: white;
+        }
+        
+        .investment-options {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1e4b8e;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .option-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            border-top: 4px solid var(--secondary-color);
+        }
+        
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .option-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .option-card .card-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            margin: -1.5rem -1.5rem 1rem -1.5rem;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .performance {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .metric h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        .resources {
+            padding: 3rem 0;
+        }
+        
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resource-item {
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1rem;
+        }
+        
+        footer {
+            background-color:#1e4b8e;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1e4b8e;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        /* Learn More Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+            }
+            
+            .footer-links a {
+                margin: 0.5rem 0;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 2% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Grow Your Wealth with Nexus Bank</h1>
+            <p>Discover investment solutions tailored to your financial goals, whether you're planning for retirement, saving for education, or building generational wealth.</p>
+            <a href="#contact-advisor" class="btn">Speak with an Advisor</a>
+        </div>
+    </section>
+
+    <section class="investment-options">
+        <div class="container">
+            <h2 class="section-title">Our Investment Solutions</h2>
+            <div class="options-grid">
+                <!-- Retirement Accounts -->
+                <div class="option-card">
+                    <div class="card-image" style="background-image: url('https://www.moaa.org/contentassets/e3d0cd0690a54792a957e19302ab8e46/older-couple-finance-prep-h.png');"></div>
+                    <h3>Retirement Accounts</h3>
+                    <p>Secure your future with our comprehensive retirement planning solutions.</p>
+                    <ul>
+                        <li>Traditional and Roth IRAs</li>
+                        <li>401(k) Rollovers</li>
+                        <li>SEP IRAs for businesses</li>
+                    </ul>
+                    <button onclick="openModal('retirement-modal')" class="btn">Learn More</button>
+                </div>
+                
+                <!-- Brokerage Accounts -->
+                <div class="option-card">
+                    <div class="card-image" style="background-image: url('https://imageio.forbes.com/specials-images/imageserve/6603190544c08b5e225a2844/A-photo-of-a-woman-using-a-stock-brokerage-app-and-website-to-check-her-stocks-/1960x0.jpg?format=jpg&width=960');"></div>
+                    <h3>Brokerage Accounts</h3>
+                    <p>Access the markets with our powerful trading platform.</p>
+                    <ul>
+                        <li>Stocks, bonds, ETFs, mutual funds</li>
+                        <li>Advanced research tools</li>
+                        <li>Professional guidance</li>
+                    </ul>
+                    <button onclick="openModal('brokerage-modal')" class="btn">Learn More</button>
+                </div>
+                
+                <!-- Education Savings -->
+                <div class="option-card">
+                    <div class="card-image" style="background-image: url('https://media.istockphoto.com/id/465727260/photo/saving-for-education.jpg?s=612x612&w=0&k=20&c=VKTEm8AfYTckZR5Rl5XJ4-VKWkfBWxWGIFiaupaQC60=');"></div>
+                    <h3>Education Savings</h3>
+                    <p>Invest in your child's future with tax-advantaged plans.</p>
+                    <ul>
+                        <li>529 College Savings Plans</li>
+                        <li>Coverdell ESAs</li>
+                        <li>Custodial accounts</li>
+                    </ul>
+                    <button onclick="openModal('education-modal')" class="btn">Learn More</button>
+                </div>
+                
+                <!-- Managed Portfolios -->
+                <div class="option-card">
+                    <div class="card-image" style="background-image: url('https://lh6.googleusercontent.com/proxy/fGvnJPS22AoEq1R_edflK1BLB8HPJkl1V03sfg0gzuHvDIldmWsq_KlRDFdkt8TOdyWdU4MpAyIct-VRqZTPildD4gpIP8OLbMAwF9eo9GJEM1abnXBwY621OuwvwyJZU0CvObPLcLrmokgAcpOMKrZ38yDpvGwYpANFwODb6NO097pAGGAn35pEBdYgyefjUWQSspaeWygXlASNdhFCH5Pz3wU');"></div>
+                    <h3>Managed Portfolios</h3>
+                    <p>Professional management for your investment portfolio.</p>
+                    <ul>
+                        <li>Personalized asset allocation</li>
+                        <li>Regular rebalancing</li>
+                        <li>Tax-efficient strategies</li>
+                    </ul>
+                    <button onclick="openModal('managed-modal')" class="btn">Learn More</button>
+                </div>
+                
+                <!-- CDs -->
+                <div class="option-card">
+                    <div class="card-image" style="background-image: url('https://boiusa.com/documents/39841/293071/Certificate+of+Deposit.jpg/f5e27b48-3959-ee99-7678-c1d8d3d3a146?t=1661686117728');"></div>
+                    <h3>Certificates of Deposit</h3>
+                    <p>Low-risk savings with guaranteed returns.</p>
+                    <ul>
+                        <li>Terms from 3 months to 5 years</li>
+                        <li>Competitive interest rates</li>
+                        <li>FDIC insured</li>
+                    </ul>
+                    <button onclick="openModal('cds-modal')" class="btn">Learn More</button>
+                </div>
+                
+                <!-- Sustainable Investing -->
+                <div class="option-card">
+                    <div class="card-image" style="background-image: url('https://manufacturing-today.com/wp-content/uploads/sites/4/2024/07/sustainable-investing.png');"></div>
+                    <h3>Sustainable Investing</h3>
+                    <p>Align your investments with your values.</p>
+                    <ul>
+                        <li>ESG screening</li>
+                        <li>Impact investing</li>
+                        <li>Community development</li>
+                    </ul>
+                    <button onclick="openModal('esg-modal')" class="btn">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="performance">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Our Investment Performance</h2>
+            <div class="performance-metrics">
+                <div class="metric">
+                    <h2>8.2%</h2>
+                    <p>Average annual return for our balanced portfolios (5-year)</p>
+                </div>
+                <div class="metric">
+                    <h2>95%</h2>
+                    <p>Client satisfaction with our investment advisory services</p>
+                </div>
+                <div class="metric">
+                    <h2>$2.4B</h2>
+                    <p>Assets under management by Nexus Wealth Advisors</p>
+                </div>
+                <div class="metric">
+                    <h2>0.25%</h2>
+                    <p>Average expense ratio for our mutual fund selections</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resources">
+        <div class="container">
+            <h2 class="section-title">Investment Resources</h2>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <h3>Investment Calculators</h3>
+                    <p>Use our tools to project growth, compare investments, and plan for major financial goals.</p>
+                    <a href="#" class="btn-outline">Explore Tools</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Market Insights</h3>
+                    <p>Weekly commentary and analysis from our team of investment strategists.</p>
+                    <a href="#" class="btn-outline">Read Reports</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Educational Webinars</h3>
+                    <p>Live and recorded sessions covering investment fundamentals and advanced strategies.</p>
+                    <a href="#" class="btn-outline">View Schedule</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Research Reports</h3>
+                    <p>In-depth analysis of market sectors, economic trends, and investment opportunities.</p>
+                    <a href="#" class="btn-outline">Access Research</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-advisor" class="contact" style="padding: 3rem 0;">
+        <div class="container">
+            <h2 class="section-title">Ready to Start Investing?</h2>
+            <div class="contact-form">
+                <p style="text-align: center; margin-bottom: 1.5rem;">Our certified financial advisors are ready to help you create a personalized investment strategy.</p>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">Investment Interest</label>
+                        <select id="interest">
+                            <option value="">Select an option</option>
+                            <option value="retirement">Retirement Planning</option>
+                            <option value="brokerage">Brokerage Account</option>
+                            <option value="education">Education Savings</option>
+                            <option value="wealth">Wealth Management</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Questions or Comments</label>
+                        <textarea id="message" rows="4" placeholder="Your message"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; padding: 1rem; font-size: 1.1rem;">Request a Consultation</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="security.html">Security Center</a>
+                <a href="accessibility.html">Accessibility</a>
+                <a href="sitemap.html">Site Map</a>
+            </div>
+            <p>&copy; 2023 Nexus Bank. All rights reserved. Member FDIC. Equal Housing Lender.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Investments are not FDIC insured, may lose value, and are not bank guaranteed.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Windows for Learn More Content -->
+    <div id="retirement-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('retirement-modal')">&times;</span>
+            <h2>Retirement Planning Solutions</h2>
+            <img src="images/retirement-large.jpg" alt="Happy retired couple" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 4px; margin: 1rem 0;">
+            <p>At Nexus Bank, we offer comprehensive retirement planning solutions to help you build the future you envision. Our retirement specialists will work with you to create a personalized strategy based on your goals, timeline, and risk tolerance.</p>
+            
+            <h3>Retirement Account Options</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                <div>
+                    <h4>Traditional IRA</h4>
+                    <ul>
+                        <li>Tax-deductible contributions</li>
+                        <li>Tax-deferred growth</li>
+                        <li>Required minimum distributions after age 72</li>
+                        <li>2023 contribution limit: $6,500 ($7,500 if 50+)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Roth IRA</h4>
+                    <ul>
+                        <li>After-tax contributions</li>
+                        <li>Tax-free growth and withdrawals</li>
+                        <li>No required minimum distributions</li>
+                        <li>2023 contribution limit: $6,500 ($7,500 if 50+)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Retirement Planning Services</h3>
+            <ul>
+                <li><strong>401(k) Rollovers:</strong> Consolidate your old retirement accounts for easier management</li>
+                <li><strong>Retirement Income Planning:</strong> Create a sustainable withdrawal strategy</li>
+                <li><strong>Social Security Optimization:</strong> Determine the best claiming strategy</li>
+                <li><strong>Tax Planning:</strong> Minimize taxes in retirement</li>
+            </ul>
+            
+            <p>Our retirement calculators can help you estimate how much you need to save and project your potential retirement income based on different scenarios.</p>
+            <button class="btn" style="margin-top: 1rem;">Schedule Retirement Consultation</button>
+        </div>
+    </div>
+      <!-- Education Savings Modal -->
+    <div id="education-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('education-modal')">&times;</span>
+            <h2>Education Savings Solutions</h2>
+            <img src="images/education-large.jpg" alt="Students graduating" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 4px; margin: 1rem 0;">
+            <p>Invest in your child's future education with our tax-advantaged savings plans. We offer multiple options to help families prepare for education expenses from kindergarten through graduate school.</p>
+            
+            <h3>529 College Savings Plans</h3>
+            <ul>
+                <li><strong>Tax-free growth:</strong> Earnings grow tax-free when used for qualified education expenses</li>
+                <li><strong>Flexible contributions:</strong> No annual contribution limits (subject to gift tax rules)</li>
+                <li><strong>Wide usage:</strong> Can be used at any accredited institution nationwide</li>
+                <li><strong>Control:</strong> Account owner maintains control of the funds</li>
+                <li><strong>State tax benefits:</strong> Many states offer tax deductions for contributions</li>
+            </ul>
+            
+            <h3>Other Education Savings Options</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                <div>
+                    <h4>Coverdell ESAs</h4>
+                    <ul>
+                        <li>$2,000 annual contribution limit</li>
+                        <li>Can be used for K-12 and higher education</li>
+                        <li>More investment options than 529 plans</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Custodial Accounts (UTMA/UGMA)</h4>
+                    <ul>
+                        <li>Flexible use of funds (not limited to education)</li>
+                        <li>Assets transfer to child at age of majority</li>
+                        <li>Potential tax benefits for the donor</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p>Our education savings calculator can help you estimate future education costs and determine how much you need to save each month to reach your goals.</p>
+            <button class="btn" style="margin-top: 1rem;">Start Education Savings Plan</button>
+        </div>
+    </div>
+
+    <!-- Managed Portfolios Modal -->
+    <div id="managed-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('managed-modal')">&times;</span>
+            <h2>Professional Portfolio Management</h2>
+            <img src="images/wealth-large.jpg" alt="Financial advisor meeting" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 4px; margin: 1rem 0;">
+            <p>Let our team of experienced investment professionals manage your portfolio based on your specific financial goals, time horizon, and risk tolerance.</p>
+            
+            <h3>Our Approach</h3>
+            <ul>
+                <li><strong>Personalized Strategy:</strong> Custom asset allocation tailored to your needs</li>
+                <li><strong>Diversification:</strong> Spread investments across asset classes to manage risk</li>
+                <li><strong>Active Monitoring:</strong> Regular portfolio reviews and rebalancing</li>
+                <li><strong>Tax Efficiency:</strong> Strategies to minimize tax liabilities</li>
+                <li><strong>Transparent Reporting:</strong> Clear, comprehensive performance reporting</li>
+            </ul>
+            
+            <h3>Management Options</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                <div>
+                    <h4>Discretionary Management</h4>
+                    <ul>
+                        <li>Our team makes all investment decisions</li>
+                        <li>Ideal for clients who prefer a hands-off approach</li>
+                        <li>Quarterly performance reviews</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Advisory Services</h4>
+                    <ul>
+                        <li>Collaborative approach with your advisor</li>
+                        <li>You maintain final approval on all transactions</li>
+                        <li>More frequent communication options</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Fee Structure</h3>
+            <p>Our management fees are competitive and based on assets under management:</p>
+            <ul>
+                <li>First $500,000: 1.00% annually</li>
+                <li>Next $500,000: 0.75% annually</li>
+                <li>Over $1 million: 0.50% annually</li>
+            </ul>
+            <p>Fees are calculated quarterly and billed in arrears.</p>
+            
+            <button class="btn" style="margin-top: 1rem;">Request Wealth Management Consultation</button>
+        </div>
+    </div>
+
+    <!-- CDs Modal -->
+    <div id="cds-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cds-modal')">&times;</span>
+            <h2>Certificates of Deposit</h2>
+            <img src="images/cds-large.jpg" alt="CD rates chart" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 4px; margin: 1rem 0;">
+            <p>Our Certificates of Deposit offer a safe, FDIC-insured way to grow your savings with guaranteed returns. Choose from a variety of terms to match your financial timeline.</p>
+            
+            <h3>Current CD Rates</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead>
+                    <tr style="background-color: var(--light-color);">
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 1px solid #ddd;">Term</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 1px solid #ddd;">APY</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 1px solid #ddd;">Minimum Deposit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">3 Months</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">2.50%</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">$1,000</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">6 Months</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">3.00%</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">$1,000</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">12 Months</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">3.75%</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">$1,000</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">24 Months</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">4.00%</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">$1,000</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">36 Months</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">4.25%</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">$1,000</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">60 Months</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">4.50%</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #ddd;">$1,000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.9rem; font-style: italic;">Rates as of June 2023. Rates subject to change.</p>
+            
+            <h3>CD Features</h3>
+            <ul>
+                <li><strong>FDIC Insured:</strong> Up to $250,000 per depositor</li>
+                <li><strong>Fixed Rates:</strong> Your APY is locked in for the term</li>
+                <li><strong>Automatic Renewal:</strong> Option to automatically renew at maturity</li>
+                <li><strong>Early Withdrawal:</strong> Available with penalty (typically 3-6 months interest)</li>
+                <li><strong>Laddering Strategies:</strong> We can help you create a CD ladder for liquidity and yield</li>
+            </ul>
+            
+            <button class="btn" style="margin-top: 1rem;">Open a CD Account</button>
+        </div>
+    </div>
+
+    <!-- ESG Investing Modal -->
+    <div id="esg-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('esg-modal')">&times;</span>
+            <h2>Sustainable & Responsible Investing</h2>
+            <img src="images/esg-large.jpg" alt="Wind turbines and solar panels" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 4px; margin: 1rem 0;">
+            <p>Align your investments with your values through our Environmental, Social, and Governance (ESG) investment options. We believe you shouldn't have to choose between your principles and performance.</p>
+            
+            <h3>Our ESG Approach</h3>
+            <ul>
+                <li><strong>Positive Screening:</strong> Invest in companies with strong ESG practices</li>
+                <li><strong>Negative Screening:</strong> Exclude industries like fossil fuels, tobacco, or firearms</li>
+                <li><strong>Thematic Investing:</strong> Focus on specific issues like clean energy or gender diversity</li>
+                <li><strong>Impact Investing:</strong> Direct capital to measurable social/environmental benefits</li>
+                <li><strong>Shareholder Advocacy:</strong> Engage with companies to improve practices</li>
+            </ul>
+            
+            <h3>ESG Investment Options</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                <div>
+                    <h4>ESG Mutual Funds & ETFs</h4>
+                    <ul>
+                        <li>Diversified portfolios with ESG criteria</li>
+                        <li>Various risk profiles available</li>
+                        <li>Competitive expense ratios</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Green Bonds</h4>
+                    <ul>
+                        <li>Fixed income for environmental projects</li>
+                        <li>Municipal and corporate options</li>
+                        <li>Typically tax-exempt interest</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Community Investments</h4>
+                    <ul>
+                        <li>Support affordable housing</li>
+                        <li>Small business development</li>
+                        <li>Local community projects</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Custom ESG Portfolios</h4>
+                    <ul>
+                        <li>Tailored to your specific values</li>
+                        <li>Individual stock selection available</li>
+                        <li>Professional management</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Performance Track Record</h3>
+            <p>Our ESG portfolios have demonstrated competitive returns compared to traditional benchmarks:</p>
+            <ul>
+                <li>ESG Equity Portfolio: 9.1% annualized return (5-year)</li>
+                <li>ESG Balanced Portfolio: 7.8% annualized return (5-year)</li>
+                <li>Green Bond Portfolio: 4.2% annualized return (5-year)</li>
+            </ul>
+            
+            <button class="btn" style="margin-top: 1rem;">Explore ESG Investing</button>
+        </div>
+    </div>
+    <!-- Other modals would follow similar structure -->
+    <div id="brokerage-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('brokerage-modal')">&times;</span>
+            <h2>Brokerage Account Services</h2>
+            <img src="images/brokerage-large.jpg" alt="Stock market analysis" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 4px; margin: 1rem 0;">
+            <p>Our brokerage services provide you with the tools and resources to invest with confidence. Whether you're a hands-on investor or prefer professional guidance, we have solutions to meet your needs.</p>
+            
+            <h3>Account Features</h3>
+            <ul>
+                <li>$0 commission online trades for stocks and ETFs</li>
+                <li>Access to over 3,000 no-transaction-fee mutual funds</li>
+                <li>Advanced trading platform with real-time quotes</li>
+                <li>Comprehensive research from top analysts</li>
+                <li>Automatic dividend reinvestment</li>
+            </ul>
+            
+            <h3>Investment Choices</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                <div>
+                    <h4>Stocks</h4>
+                    <p>Invest in companies you believe in with access to NYSE, NASDAQ, and global markets</p>
+                </div>
+                <div>
+                    <h4>ETFs</h4>
+                    <p>Diversify with low-cost exchange-traded funds across sectors and asset classes</p>
+                </div>
+                <div>
+                    <h4>Bonds</h4>
+                    <p>Corporate, municipal, and Treasury bonds for income and stability</p>
+                </div>
+                <div>
+                    <h4>Options</h4>
+                    <p>Advanced strategies for experienced investors (approval required)</p>
+                </div>
+            </div>
+            
+            <button class="btn" style="margin-top: 1rem;">Open Brokerage Account</button>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
+        }
+        
+        // Close modal when clicking outside content
+        window.onclick = function(event) {
+            if (event.target.className === "modal") {
+                event.target.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+    </script>
+</body>
+</html>

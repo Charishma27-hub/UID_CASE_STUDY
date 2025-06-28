@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Bank - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: url('https://static.vecteezy.com/system/resources/thumbnails/048/587/373/small/modern-bank-building-entrance-free-photo.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(92, 90, 129, 0.5);
+            z-index: 0;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+            margin: 20px;
+        }
+        
+        h1 {
+            color: #1a237e;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 30px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #1a237e, #1a237e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      letter-spacing: 2px;
+    }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            border-color: #1a237e;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.2);
+        }
+        
+        button {
+            width: 100%;
+            padding: 16px;
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background-color: #303f9f;
+        }
+        
+        .forgot-link {
+            text-align: right;
+            margin-top: 15px;
+        }
+        
+        .forgot-link a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .forgot-link a:hover {
+            color: #1a237e;
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+        }
+        
+        .register-link a {
+            color: #1a237e;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .security-tip {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="index.html">
+                <div class="logo"><a href="index.html">Nexus</a></div>
+            </a>
+        </div>
+        
+        <h1>Secure Banking Login</h1>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="customerId">Customer ID</label>
+                <input type="text" id="customerId" name="customerId" placeholder="Enter your bank ID" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            
+            <div class="forgot-link">
+                <a href="#">Forgot Customer ID or Password?</a>
+            </div>
+            
+            <button type="submit">LOGIN</button>
+        </form>
+        
+        <div class="security-tip">
+            <i>Always check for 'https://' and the padlock icon before logging in</i>
+        </div>
+        
+        <div class="register-link">
+            New customer? <a href="register.html">Enroll in Online Banking</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const customerId = document.getElementById("customerId").value.trim();
+            const password = document.getElementById("password").value;
+            
+            // Get users from localStorage
+            const users = JSON.parse(localStorage.getItem('nexusBankUsers')) || [];
+            const user = users.find(u => u.customerId === customerId && u.password === password);
+            
+            if (!user) {
+                alert("Invalid Customer ID or Password!");
+                return;
+            }
+            
+            // Store current user in session
+            sessionStorage.setItem('currentUser', JSON.stringify(user));
+            
+            // Successful login - redirect to main page
+            alert(`Welcome back, ${user.fullName.split(' ')[0]}! Redirecting to your account...`);
+            window.location.href = "nexusl.html";
+        });
+    </script>
+</body>
+</html>

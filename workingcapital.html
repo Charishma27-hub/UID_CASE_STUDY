@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working Capital Solutions</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #003366;
+            --accent-color: #ff6b00;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .service-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .service-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .service-header h1 {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .service-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .service-card {
+            flex: 1 1 300px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .service-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .service-features {
+            margin-top: 20px;
+        }
+        
+        .service-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-features i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #004494;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="service-container">
+        <div class="service-header">
+            <h1>Working Capital Solutions</h1>
+            <p>Flexible financing solutions to manage your day-to-day operations and keep your business running smoothly.</p>
+        </div>
+        
+        <div class="service-content">
+            <div class="service-card">
+                <h2><i class="fas fa-money-bill-wave"></i> Short-Term Loans</h2>
+                <p>Bridge temporary cash flow gaps with our flexible short-term loan options.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Quick approval process</li>
+                    <li><i class="fas fa-check"></i> Competitive interest rates</li>
+                    <li><i class="fas fa-check"></i> Flexible repayment terms</li>
+                </ul>
+                <a href="#" class="cta-button">Learn More</a>
+            </div>
+            
+            <div class="service-card">
+                <h2><i class="fas fa-credit-card"></i> Business Line of Credit</h2>
+                <p>Access funds when you need them with our revolving credit facility.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Draw funds as needed</li>
+                    <li><i class="fas fa-check"></i> Pay interest only on what you use</li>
+                    <li><i class="fas fa-check"></i> 24/7 online access</li>
+                </ul>
+                <a href="#" class="cta-button">Apply Now</a>
+            </div>
+            
+            <div class="service-card">
+                <h2><i class="fas fa-receipt"></i> Invoice Financing</h2>
+                <p>Get immediate cash flow by borrowing against your outstanding invoices.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Improve cash flow immediately</li>
+                    <li><i class="fas fa-check"></i> No long-term debt</li>
+                    <li><i class="fas fa-check"></i> Credit protection available</li>
+                </ul>
+                <a href="#" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

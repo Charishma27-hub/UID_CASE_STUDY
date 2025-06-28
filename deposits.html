@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Products | Nexus Bank Personal Banking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0a2342;
+            --secondary-blue: #1d3a6b;
+            --accent-gold: #f5b434;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 10px 30px rgba(10, 35, 66, 0.15);
+            --savings-green: #2ecc71;
+            --fixed-deposit-orange: #ff7f50;
+            --current-account-purple: #9b59b6;
+            --gradient-blue: linear-gradient(135deg, #0a2342 0%, #1d3a6b 100%);
+            --gradient-gold: linear-gradient(135deg, #f5b434 0%, #f8d56b 100%);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: #212529;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: #1e4b8e;
+            color: white;
+            padding: 60px 0 80px;
+            text-align: center;
+            margin-bottom: -40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 42px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 15px auto 0;
+            opacity: 0.9;
+        }
+        
+        .promo-banner {
+            background: var(--gradient-gold);
+            color: #1e4b8e;
+            padding: 30px 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(245, 180, 52, 0.3);
+            transform: translateY(-20px);
+            z-index: 2;
+        }
+        
+        .promo-banner::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+        }
+        
+        .promo-content {
+            max-width: 60%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .promo-content h2 {
+            margin-top: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .promo-content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .promo-content .btn {
+            background-color:#1e4b8e;
+            color: white;
+            box-shadow: 0 4px 15px rgba(10, 35, 66, 0.3);
+        }
+        
+        .promo-image {
+            position: absolute;
+            right: 40px;
+            bottom: 0;
+            height: 120px;
+            opacity: 0.9;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            display: inline-block;
+            font-size: 32px;
+            font-weight: 700;
+            color:#1e4b8e;
+            margin: 0;
+            padding: 0 20px;
+            background: var(--light-bg);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+            z-index: 0;
+        }
+        
+        .deposit-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .deposit-product {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            border-top: 5px solid var(--primary-blue);
+            position: relative;
+        }
+        
+        .deposit-product::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-blue);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .deposit-product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(10, 35, 66, 0.2);
+        }
+        
+        .deposit-product:hover::after {
+            opacity: 1;
+        }
+        
+        .deposit-product.savings {
+            border-top-color:#1e4b8e;
+        }
+        
+        .deposit-product.fixed {
+            border-top-color:#1e4b8e;
+        }
+        
+        .deposit-product.current {
+            border-top-color: #1e4b8e;
+        }
+        
+        .product-icon {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color:#1e4b8e;
+            background: linear-gradient(135deg, #f0f4f9 0%, #e8f0f8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-icon::before {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+        }
+        
+        .savings .product-icon {
+            color: #1e4b8e;
+            background: linear-gradient(135deg, #f0f9f4 0%, #e8f8ee 100%);
+        }
+        
+        .fixed .product-icon {
+            color: #1e4b8e;
+            background: linear-gradient(135deg, #fff5f0 0%, #fff0e8 100%);
+        }
+        
+        .current .product-icon {
+            color: #1e4b8e;
+            background: linear-gradient(135deg, #f7f0ff 0%, #f0e8f8 100%);
+        }
+        
+        .product-details {
+            padding: 25px;
+        }
+        
+        .product-title {
+            color: #1e4b8e;
+            margin: 0 0 15px 0;
+            font-size: 22px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+        }
+        
+        .product-features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+            font-size: 15px;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            color: var(--accent-gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .interest-rate {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 600;
+            font-size: 18px;
+            border: 1px dashed rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #1e4b8e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-align: center;
+            font-size: 15px;
+            box-shadow: 0 4px 10px rgba(10, 35, 66, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(10, 35, 66, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .btn-group .btn {
+            flex: 1;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #1e4b8e;
+            border: 1px solid #1e4b8e;
+            box-shadow: none;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f0f4f9;
+            box-shadow: 0 4px 10px rgba(10, 35, 66, 0.1);
+        }
+        
+        .product-badge {
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 12px;
+            box-shadow: 0 2px 5px rgba(245, 180, 52, 0.3);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 50px 0;
+            box-shadow: var(--card-shadow);
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, 
+        .comparison-table td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary-blue);
+            color: white;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f1f5fa;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+        
+        .faq-section {
+            margin: 70px 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 10px 25px rgba(10, 35, 66, 0.15);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background-color: #1e4b8e;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: var(--secondary-blue);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .faq-answer.show {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            margin: 0;
+        }
+        
+        .testimonial-section {
+            background: var(--gradient-blue);
+            color: white;
+            padding: 60px 0;
+            margin: 70px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .testimonial-container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .testimonial-quote {
+            font-size: 22px;
+            font-style: italic;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .testimonial-quote::before,
+        .testimonial-quote::after {
+            content: '"';
+            font-size: 50px;
+            color: var(--accent-gold);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .testimonial-quote::before {
+            top: -20px;
+            left: -40px;
+        }
+        
+        .testimonial-quote::after {
+            bottom: -40px;
+            right: -40px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .testimonial-role {
+            opacity: 0.8;
+            font-size: 15px;
+        }
+        
+        .calculator-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            margin: 60px 0;
+        }
+        
+        .calculator-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-blue);
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-blue);
+        }
+        
+        .form-group input, 
+        .form-group select {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .calculator-result {
+            background: rgba(10, 35, 66, 0.05);
+            border-radius: 10px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .calculator-result h3 {
+            margin-top: 0;
+            color: var(--primary-blue);
+        }
+        
+        .calculator-result p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+        
+        .highlight-result {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin: 15px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .deposit-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .promo-content {
+                max-width: 100%;
+            }
+            
+            .promo-image {
+                display: none;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content container">
+            <h1>Grow Your Wealth With Nexus Bank</h1>
+            <p class="subtitle">Discover deposit solutions tailored to your financial goals with competitive interest rates and flexible terms</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Promotional Banner -->
+        <div class="promo-banner">
+            <div class="promo-content">
+                <h2>🚀 Special Fixed Deposit Rates!</h2>
+                <p>Lock in your savings at an exclusive rate of 7.25% for 3-year fixed deposits. Limited time offer - act now!</p>
+                <a href="#" class="btn">Invest Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Investment growth" class="promo-image">
+        </div>
+        
+        <!-- Deposit Products Section -->
+        <div class="section-title">
+            <h2>Our Deposit Products</h2>
+        </div>
+        
+        <div class="deposit-section">
+            <!-- Savings Account -->
+            <div class="deposit-product savings">
+                <div class="product-icon">
+                    <i class="fas fa-piggy-bank"></i>
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Premium Savings <span class="product-badge">Most Popular</span></h3>
+                    <div class="interest-rate">
+                        Earn up to <span class="highlight">5.5% p.a.</span> interest
+                    </div>
+                    <ul class="product-features">
+                        <li>No minimum balance requirement</li>
+                        <li>Free digital banking with mobile app</li>
+                        <li>Unlimited transactions</li>
+                        <li>Contactless Visa debit card included</li>
+                        <li>24/7 customer support</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Open Account Online</a>
+                        <a href="#savings-details" class="btn btn-secondary">Details <i class="fas fa-info-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fixed Deposit -->
+            <div class="deposit-product fixed">
+                <div class="product-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Fixed Deposit Plus</h3>
+                    <div class="interest-rate">
+                        Get <span class="highlight">7.25% p.a.</span> for 3 years
+                    </div>
+                    <ul class="product-features">
+                        <li>Flexible tenure from 7 days to 10 years</li>
+                        <li>+0.5% extra for senior citizens</li>
+                        <li>Monthly/quarterly payout options</li>
+                        <li>Instant loan against FD up to 90%</li>
+                        <li>Auto-renewal facility</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Start Investing</a>
+                        <a href="#fixed-details" class="btn btn-secondary">Compare Rates</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Current Account -->
+            <div class="deposit-product current">
+                <div class="product-icon">
+                    <i class="fas fa-business-time"></i>
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Business Current Pro</h3>
+                    <div class="interest-rate">
+                        Earn <span class="highlight">3.5% p.a.</span> on balances
+                    </div>
+                    <ul class="product-features">
+                        <li>Unlimited free transactions</li>
+                        <li>Premium cheque book included</li>
+                        <li>Overdraft facility up to ₹10 lakhs</li>
+                        <li>Dedicated relationship manager</li>
+                        <li>Multi-user access for businesses</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Open Account</a>
+                        <a href="#current-details" class="btn btn-secondary">Business Solutions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Comparison Table -->
+        <div class="section-title">
+            <h2>Compare Our Products</h2>
+        </div>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Features</th>
+                    <th>Premium Savings</th>
+                    <th>Fixed Deposit Plus</th>
+                    <th>Business Current Pro</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Interest Rate</td>
+                    <td>4.0% - 5.5% p.a.</td>
+                    <td>6.0% - 7.25% p.a.</td>
+                    <td>Up to 3.5% p.a.</td>
+                </tr>
+                <tr>
+                    <td>Minimum Deposit</td>
+                    <td>₹1,000</td>
+                    <td>₹5,000</td>
+                    <td>₹25,000</td>
+                </tr>
+                <tr>
+                    <td>Withdrawal Flexibility</td>
+                    <td>Anytime</td>
+                    <td>At maturity (early withdrawal penalty)</td>
+                    <td>Anytime</td>
+                </tr>
+                <tr>
+                    <td>Best For</td>
+                    <td>Daily banking & saving goals</td>
+                    <td>Long-term wealth growth</td>
+                    <td>Business transactions & cash flow</td>
+                </tr>
+                <tr>
+                    <td>Digital Features</td>
+                    <td><i class="fas fa-check" style="color: var(--savings-green);"></i> Full access</td>
+                    <td><i class="fas fa-check" style="color: var(--fixed-deposit-orange);"></i> View only</td>
+                    <td><i class="fas fa-check" style="color: var(--current-account-purple);"></i> Full access + business tools</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Interest Calculator -->
+        <div class="calculator-section">
+            <div class="calculator-title">
+                <h2>Calculate Your Earnings</h2>
+                <p>See how much you can grow your savings with our deposit products</p>
+            </div>
+            
+            <div class="calculator-grid">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="product-type">Product Type</label>
+                        <select id="product-type">
+                            <option value="savings">Premium Savings Account</option>
+                            <option value="fixed">Fixed Deposit Plus</option>
+                            <option value="current">Business Current Pro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="principal">Deposit Amount (₹)</label>
+                        <input type="number" id="principal" placeholder="e.g. 100000" min="1000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tenure">Tenure (for FD)</label>
+                        <select id="tenure">
+                            <option value="1">1 Year</option>
+                            <option value="2">2 Years</option>
+                            <option value="3" selected>3 Years</option>
+                            <option value="5">5 Years</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn" onclick="calculateInterest()">Calculate Earnings <i class="fas fa-calculator"></i></button>
+                </div>
+                
+                <div class="calculator-result" id="result">
+                    <h3>Your Projected Earnings</h3>
+                    <p>Select a product and enter your details to see how much you can earn.</p>
+                </div>
+            </div>
+        </div>
+                
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What documents do I need to open an account?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>To open any account with Nexus Bank, you'll need:</p>
+                    <ul>
+                        <li>Proof of identity (PAN card, Aadhaar, passport, etc.)</li>
+                        <li>Proof of address (utility bill, rental agreement, etc.)</li>
+                        <li>Passport-sized photographs</li>
+                        <li>For current accounts: Business registration documents</li>
+                    </ul>
+                    <p>Our digital onboarding process makes it quick and easy - you can complete most steps online!</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Can I withdraw from my fixed deposit before maturity?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we understand that emergencies happen. You can withdraw your fixed deposit before maturity with these conditions:</p>
+                    <ul>
+                        <li>Premature withdrawals may attract a penalty of 0.5-1% on the interest rate</li>
+                        <li>The exact penalty depends on the remaining tenure</li>
+                        <li>Alternatively, you can take a loan against your FD at attractive rates</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How is interest calculated on savings accounts?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We calculate interest on your daily balance to maximize your earnings:</p>
+                    <ul>
+                        <li>Interest is calculated daily based on your closing balance</li>
+                        <li>Compounded and credited quarterly to your account</li>
+                        <li>Formula: (Daily balance × interest rate) ÷ 365 days</li>
+                        <li>Higher interest tiers for balances above ₹1 lakh</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What makes Nexus Bank's deposit products different?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>At Nexus Bank, we're committed to helping you grow your wealth with:</p>
+                    <ul>
+                        <li>Competitive interest rates that are among the best in the industry</li>
+                        <li>Flexible terms to match your financial goals</li>
+                        <li>Seamless digital experience for easy management</li>
+                        <li>Personalized advisory services for large deposits</li>
+                        <li>Transparent pricing with no hidden charges</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+        // Toggle FAQ answers with smooth animation
+        function toggleFaq(question) {
+            const answer = question.nextElementSibling;
+            const icon = question.querySelector('i');
+            
+            // Close all other open FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer && item.classList.contains('show')) {
+                    item.classList.remove('show');
+                    const otherIcon = item.previousElementSibling.querySelector('i');
+                    otherIcon.classList.remove('fa-chevron-up');
+                    otherIcon.classList.add('fa-chevron-down');
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('show');
+            icon.classList.toggle('fa-chevron-up');
+            icon.classList.toggle('fa-chevron-down');
+        }
+        
+        // Interest calculator
+        function calculateInterest() {
+            const principal = parseFloat(document.getElementById('principal').value);
+            const productType = document.getElementById('product-type').value;
+            const tenure = parseInt(document.getElementById('tenure').value);
+            
+            if (!principal || principal < 1000) {
+                alert('Please enter a valid deposit amount (minimum ₹1000)');
+                return;
+            }
+            
+            let rate, time, interest, resultHTML;
+            
+            switch(productType) {
+                case 'savings':
+                    rate = 5.5;
+                    time = 1;
+                    interest = (principal * rate * time) / 100;
+                    resultHTML = `
+                        <h3>Premium Savings Projection</h3>
+                        <p>Principal: ₹${principal.toLocaleString()}</p>
+                        <p>Interest Rate: ${rate}% p.a.</p>
+                        <div class="highlight-result">Yearly Interest: ₹${interest.toLocaleString()}</div>
+                        <p>Your money grows while remaining fully accessible for withdrawals.</p>
+                    `;
+                    break;
+                    
+                case 'fixed':
+                    const rates = {1: 6.25, 2: 6.75, 3: 7.25, 5: 7.0};
+                    rate = rates[tenure];
+                    time = tenure;
+                    interest = (principal * rate * time) / 100;
+                    resultHTML = `
+                        <h3>Fixed Deposit Plus Projection</h3>
+                        <p>Principal: ₹${principal.toLocaleString()}</p>
+                        <p>Interest Rate: ${rate}% p.a. for ${tenure} year${tenure > 1 ? 's' : ''}</p>
+                        <div class="highlight-result">Total Interest: ₹${interest.toLocaleString()}</div>
+                        <p>Maturity Amount: ₹${(principal + interest).toLocaleString()}</p>
+                    `;
+                    break;
+                    
+                case 'current':
+                    rate = 3.5;
+                    time = 1;
+                    interest = (principal * rate * time) / 100;
+                    resultHTML = `
+                        <h3>Business Current Pro Projection</h3>
+                        <p>Average Balance: ₹${principal.toLocaleString()}</p>
+                        <p>Interest Rate: ${rate}% p.a.</p>
+                        <div class="highlight-result">Yearly Interest: ₹${interest.toLocaleString()}</div>
+                        <p>Earn interest while enjoying unlimited transactions for your business.</p>
+                    `;
+                    break;
+            }
+            
+            document.getElementById('result').innerHTML = resultHTML;
+        }
+        
+        // Update calculator when product type changes
+        document.getElementById('product-type').addEventListener('change', function() {
+            if (this.value !== 'fixed') {
+                document.getElementById('tenure').disabled = true;
+            } else {
+                document.getElementById('tenure').disabled = false;
+            }
+        });
+
+        // Add alert functionality to buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Product action buttons
+            document.querySelectorAll('.btn-group .btn').forEach(btn => {
+                if (btn.getAttribute('href') && btn.getAttribute('href').startsWith('#')) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const product = this.closest('.deposit-product').querySelector('.product-title').textContent;
+                        let action = 'information';
+                        if (this.textContent.includes('Open')) action = 'account opening';
+                        if (this.textContent.includes('Compare')) action = 'rate comparison';
+                        if (this.textContent.includes('Solutions')) action = 'business solutions';
+                        alert(`Redirecting to ${product} ${action} page...`);
+                    });
+                }
+            });
+
+            // Promo banner button
+            document.querySelector('.promo-content .btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Redirecting to Fixed Deposit investment page...');
+            });
+
+            // Calculator button
+            document.querySelector('.calculator-section .btn').addEventListener('click', calculateInterest);
+        });
+    </script>
+
+    
+</body>
+</html>
+
+    

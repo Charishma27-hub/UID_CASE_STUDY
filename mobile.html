@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Digital Banking | Nexus Banking</title>
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --primary-light: #303f9f;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --light-text: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .header {
+    background-color: #1a237e;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+.header h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+.header p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #cfd8dc;
+}
+
+        .business-banking-section {
+            background-color: var(--secondary-color);
+            padding: 80px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        
+        
+        .section-header h2 {
+            color: var(--primary-color);
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .section-header p {
+            color: var(--light-text);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .features-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            padding: 12px 25px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button:hover, .tab-button.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 40px;
+            width: 100%;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .feature-card.active {
+            display: block;
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .feature-icon {
+            background-color: rgba(26, 35, 126, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .feature-icon img {
+            width: 25px;
+            height: 25px;
+        }
+        
+        .feature-text h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .feature-text p {
+            color: var(--light-text);
+            line-height: 1.5;
+            font-size: 15px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .demo-banner {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .demo-content {
+            flex: 1;
+        }
+        
+        .demo-content h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .demo-content p {
+            margin-bottom: 25px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .demo-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .demo-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .white-button {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        .white-button:hover {
+            background-color: #f1f1f1;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .demo-banner {
+                flex-direction: column;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+            
+            .section-header h2 {
+                font-size: 28px;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+    <div>
+        <h2>Business Digital Banking</h2>
+        <p>Powerful online and mobile banking solutions designed exclusively for businesses. Manage your finances efficiently with enterprise-grade tools.</p>
+    </div>
+</header>
+
+    <section class="business-banking-section">
+        <div class="container">
+            
+            
+            <div class="feature-tabs">
+                <button class="tab-button active" data-tab="mobile">Mobile Banking</button>
+                <button class="tab-button" data-tab="online">Online Banking</button>
+                <button class="tab-button" data-tab="security">Security</button>
+                <button class="tab-button" data-tab="integrations">Integrations</button>
+            </div>
+            
+            <div class="features-container">
+                <div class="feature-card active" id="mobile-tab">
+                    <h3>Business Mobile Banking</h3>
+                    <p>Complete banking operations from anywhere with our feature-rich mobile app designed for business owners and finance teams.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" alt="Mobile Deposit">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Mobile Check Deposit</h4>
+                                <p>Deposit checks instantly with your smartphone camera. Funds available next business day.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1570/1570887.png" alt="Approvals">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Payment Approvals</h4>
+                                <p>Approve or reject transactions in real-time with multi-level authorization workflows.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="Cash Flow">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Cash Flow Monitoring</h4>
+                                <p>Real-time balance and cash flow updates with customizable alerts.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2889/2889676.png" alt="Team Management">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Team Management</h4>
+                                <p>Add users with specific permissions and spending limits.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button">Download Business App</button>
+                </div>
+                
+                <div class="feature-card" id="online-tab">
+                    <h3>Business Online Banking</h3>
+                    <p>Our full-featured web platform gives you complete control over your business finances with advanced tools.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" alt="Payments">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Batch Payments</h4>
+                                <p>Process multiple payments at once with our bulk payment tools.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Payroll">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Payroll Services</h4>
+                                <p>Run payroll directly from your banking dashboard with tax calculations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Reporting">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Advanced Reporting</h4>
+                                <p>Generate custom financial reports with export to Excel or PDF.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" alt="Invoicing">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Invoice Management</h4>
+                                <p>Create, send, and track invoices with payment reminders.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button">Enroll Your Business</button>
+                </div>
+                
+                <div class="feature-card" id="security-tab">
+                    <h3>Enterprise Security</h3>
+                    <p>We protect your business with bank-grade security measures and fraud prevention tools.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2885/2885407.png" alt="Authentication">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Multi-Factor Authentication</h4>
+                                <p>Required for all sensitive transactions with multiple verification methods.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2885/2885432.png" alt="Monitoring">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Fraud Monitoring</h4>
+                                <p>24/7 transaction monitoring with instant SMS alerts for suspicious activity.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2885/2885460.png" alt="Encryption">
+                            </div>
+                            <div class="feature-text">
+                                <h4>End-to-End Encryption</h4>
+                                <p>Military-grade encryption for all data transmissions and storage.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2885/2885486.png" alt="Insurance">
+                            </div>
+                            <div class="feature-text">
+                                <h4>$250K Guarantee</h4>
+                                <p>Zero liability protection for unauthorized transactions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button">View Security Details</button>
+                </div>
+                
+                <div class="feature-card" id="integrations-tab">
+                    <h3>Business Integrations</h3>
+                    <p>Connect your banking directly to the business tools you already use every day.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968526.png" alt="QuickBooks">
+                            </div>
+                            <div class="feature-text">
+                                <h4>QuickBooks</h4>
+                                <p>Automatic sync of transactions and reconciliation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6124/6124998.png" alt="Xero">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Xero</h4>
+                                <p>Real-time accounting updates with full transaction history.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968523.png" alt="Excel">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Excel Export</h4>
+                                <p>Custom report generation with one-click export.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2885/2885335.png" alt="API">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Developer API</h4>
+                                <p>Build custom integrations with our banking API.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button">Explore Integrations</button>
+                </div>
+            </div>
+            
+            <div class="demo-banner">
+                <div class="demo-content">
+                    <h3>Ready to Transform Your Business Banking?</h3>
+                    <p>Schedule a personalized demo with our business banking specialists. See how our digital tools can save your team hours each week and give you better financial control.</p>
+                    <button class="cta-button white-button">Request Business Demo</button>
+                </div>
+                <div class="demo-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Business Banking Dashboard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and cards
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                featureCards.forEach(card => card.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding card
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Demo button functionality
+        const demoButtons = document.querySelectorAll('.cta-button');
+        demoButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // In a real implementation, this would open a form or redirect
+                alert('Thank you for your interest in Nexus Business Banking. A representative will contact you shortly.');
+            });
+        });
+    </script>
+</body>
+</html>

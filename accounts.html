@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accounts - Nexus Bank</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #0e1a78;
+      padding: 60px 20px 80px;
+      color: white;
+      text-align: center;
+      background-image: linear-gradient(135deg, #0e1a78 0%, #2140c2 100%), url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-blend-mode: overlay;
+      background-size: cover;
+      background-position: center;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #5a79ff, #5fb4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #e0e0e0;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .card {
+      max-width: 900px;
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin: -60px auto 40px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      color: #0e1a78;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .card h2:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(to right, #5a79ff, #5fb4ff);
+      border-radius: 2px;
+    }
+
+    .account {
+      margin-bottom: 30px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .account:hover {
+      transform: translateY(-3px);
+    }
+
+    .account:last-child {
+      border-bottom: none;
+    }
+
+    .account-header {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .account-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .account h3 {
+      color: #0e1a78;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .account-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .account button {
+      background-color: #0e1a78;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+
+    .account button:hover {
+      background-color: #2140c2;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .account button.create {
+      background-color: #00a86b;
+    }
+
+    .account button.create:hover {
+      background-color: #00c278;
+    }
+
+    .account-details {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: #f0f4ff;
+      border-radius: 10px;
+      animation: fadeIn 0.3s ease;
+      width: 100%;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .account-details h4 {
+      margin-top: 0;
+      color: #2140c2;
+    }
+
+    .account-details ul {
+      padding-left: 20px;
+    }
+
+    .account-details li {
+      margin-bottom: 8px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .detail-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .detail-feature img {
+      width: 24px;
+      height: 24px;
+    }
+
+    #calculator {
+      margin-top: 20px;
+      padding: 20px;
+      background: #e8f0fe;
+      border-radius: 10px;
+      border-left: 4px solid #5a79ff;
+    }
+
+    #calculator h4 {
+      margin-top: 0;
+      color: #2140c2;
+    }
+
+    #calculator input {
+      padding: 10px;
+      margin-right: 10px;
+      width: 120px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    #calculator button {
+      margin-top: 10px;
+      background-color: #2140c2;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #0e1a78;
+    }
+
+    .promo-section {
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+      border-radius: 12px;
+      padding: 25px;
+      margin: 40px 0;
+      border-left: 4px solid #5a79ff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo-section h3 {
+      color: #0e1a78;
+      margin-top: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo-section p {
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .benefit-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+
+    .benefit-card h4 {
+      color: #0e1a78;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .benefit-card h4 svg {
+      margin-right: 10px;
+      color: #5a79ff;
+    }
+
+    .benefit-image {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-top: 30px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .testimonial-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .testimonial-content {
+      flex: 1;
+    }
+
+    .testimonial-name {
+      font-weight: bold;
+      color: #0e1a78;
+      margin-bottom: 5px;
+    }
+
+    .testimonial-role {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #003eb3 0%, #0e1a78 100%);
+      color: white;
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #5fb4ff;
+      text-decoration: underline;
+    }
+
+    .app-badges {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .app-badge {
+      height: 40px;
+      transition: transform 0.3s;
+    }
+
+    .app-badge:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .card {
+        padding: 25px;
+      }
+      
+      .account-buttons {
+        flex-direction: column;
+      }
+      
+      .account button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .account-image {
+        width: 100%;
+        height: 200px;
+      }
+
+      .testimonial {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Manage Your Bank Accounts</h1>
+    <p>Open savings, current, or joint accounts with ease. Enjoy competitive interest rates, zero balance options, and premium banking services tailored to your needs.</p>
+  </header>
+
+  <section class="card">
+    <h2>Available Account Types</h2>
+
+    <div class="promo-section">
+      <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Banking with Nexus" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.1;">
+      <h3>Why Open an Account with Nexus Bank?</h3>
+      <p>Join over 5 million customers who trust Nexus Bank for their financial needs. Enjoy seamless digital banking, attractive interest rates, and 24/7 customer support.</p>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Zero Balance" class="benefit-image">
+          <h4>Zero Balance Accounts</h4>
+          <p>No minimum balance requirement for savings accounts. Bank without worrying about maintaining balances.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="High Interest" class="benefit-image">
+          <h4>High Interest Rates</h4>
+          <p>Earn up to 7% interest on savings accounts and 8.5% for senior citizens - one of the highest in the industry.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Digital Banking" class="benefit-image">
+          <h4>Instant Account Opening</h4>
+          <p>Open your account completely online in just 5 minutes with video KYC. No branch visits required.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="account">
+      <div class="account-header">
+        <h3>Zero Balance Savings Account
+          <div class="account-buttons">
+            <button onclick="toggleDetails('savings')">Know More</button>
+            <button class="create" onclick="alert('Redirecting to savings account opening form...')">Create Account</button>
+          </div>
+        </h3>
+        <p>Perfect for everyday banking with no balance requirements and attractive interest rates.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Savings Account" class="account-image">
+
+      <div id="savings-details" class="account-details">
+        <h4>Perfect for everyday banking with no balance requirements</h4>
+        <div class="detail-grid">
+          <div>
+            <ul>
+              <li>No minimum balance requirement</li>
+              <li>4% interest rate per annum (7% for balances above ₹1 lakh)</li>
+              <li>Free debit card with contactless payments</li>
+              <li>Unlimited free ATM transactions at Nexus Bank ATMs</li>
+              <li>Up to 5 free demand drafts per month</li>
+              <li>24/7 mobile and internet banking</li>
+            </ul>
+          </div>
+          <div>
+            <div id="calculator">
+              <h4>Savings Interest Calculator</h4>
+              <input type="number" id="principal" placeholder="Amount ₹" />
+              <input type="number" id="years" placeholder="Years" />
+              <button onclick="calculateInterest()">Calculate Earnings</button>
+              <div id="result"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="account">
+      <div class="account-header">
+        <h3>Current Account
+          <div class="account-buttons">
+            <button onclick="toggleDetails('current')">Know More</button>
+            <button class="create" onclick="alert('Redirecting to current account opening form...')">Create Account</button>
+          </div>
+        </h3>
+        <p>Designed for businesses with high transaction volumes and special benefits.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Current Account" class="account-image">
+
+      <div id="current-details" class="account-details">
+        <h4>Designed for businesses and professionals</h4>
+        <div class="detail-grid">
+          <div>
+            <ul>
+              <li>Ideal for high transaction volumes</li>
+              <li>Free multi-city cheque books</li>
+              <li>Up to ₹50,000 free cash deposits per month</li>
+              <li>Unlimited free RTGS/NEFT transactions</li>
+              <li>Dedicated relationship manager</li>
+              <li>Special overdraft facilities available</li>
+              <li>Customizable transaction limits</li>
+            </ul>
+            <p><strong>Minimum balance:</strong> ₹10,000 (urban), ₹5,000 (rural)</p>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Business Banking" style="width: 100%; border-radius: 8px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="account">
+      <div class="account-header">
+        <h3>Joint Account
+          <div class="account-buttons">
+            <button onclick="toggleDetails('joint')">Know More</button>
+            <button class="create" onclick="alert('Redirecting to joint account opening form...')">Create Account</button>
+          </div>
+        </h3>
+        <p>Shared banking for couples, families or business partners with flexible operation modes.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Joint Account" class="account-image">
+
+      <div id="joint-details" class="account-details">
+        <h4>Shared banking for couples, families or business partners</h4>
+        <div class="detail-grid">
+          <div>
+            <ul>
+              <li>Operate jointly or independently (Either or Survivor)</li>
+              <li>Same benefits as individual savings account</li>
+              <li>Option for individual or combined transaction limits</li>
+              <li>Shared internet banking credentials</li>
+              <li>Special family banking offers</li>
+              <li>Easy conversion from individual accounts</li>
+            </ul>
+            <p><strong>Note:</strong> All account holders must complete KYC documentation</p>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Family Banking" style="width: 100%; border-radius: 8px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="account">
+      <div class="account-header">
+        <h3>Senior Citizen Account
+          <div class="account-buttons">
+            <button onclick="toggleDetails('senior')">Know More</button>
+            <button class="create" onclick="alert('Redirecting to senior citizen account opening form...')">Create Account</button>
+          </div>
+        </h3>
+        <p>Special benefits and higher interest rates for customers aged 60 years and above.</p>
+      </div>
+      <img src="https://www.icicibank.com/content/dam/icicibank/india/managed-assets/revamp-pages/senior-citizen/priority-assistance.webp" alt="Senior Citizen Account" class="account-image">
+
+      <div id="senior-details" class="account-details">
+        <h4>Special benefits for customers aged 60+</h4>
+        <div class="detail-grid">
+          <div>
+            <ul>
+              <li>Higher interest rates (8.5% per annum)</li>
+              <li>Free health check-up insurance up to ₹5,000 annually</li>
+              <li>Priority customer service</li>
+              <li>Free demand drafts and pay orders</li>
+              <li>Special quarterly interest payout option</li>
+              <li>Higher ATM withdrawal limits</li>
+              <li>Discounted locker facilities</li>
+            </ul>
+            <p><strong>Eligibility:</strong> Primary account holder must be 60 years or older</p>
+          </div>
+          <div>
+            <img src="https://www.wintwealth.com/blog/wp-content/uploads/2022/10/Senior-Citizen-Savings-Scheme-1.jpg" alt="Senior Benefits" style="width: 100%; border-radius: 8px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Customer" class="testimonial-image">
+      <div class="testimonial-content">
+        <div class="testimonial-name">Priya Sharma</div>
+        <div class="testimonial-role">Small Business Owner, Mumbai</div>
+        <p>"Switching to Nexus Bank was the best financial decision I made. The zero balance account saved me during my startup phase, and now their current account helps me manage my growing business effortlessly. The mobile app is incredibly user-friendly!"</p>
+      </div>
+    </div>
+
+    <div class="promo-section">
+      <h3>Digital Banking Features</h3>
+      <p>All Nexus Bank accounts come with our award-winning digital banking platform:</p>
+      <div class="detail-grid">
+        <div>
+          <div class="detail-feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/3058/3058979.png" alt="Transfer">
+            <div>Instant money transfers via UPI, IMPS, NEFT & RTGS</div>
+          </div>
+          <div class="detail-feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/2721/2721287.png" alt="Payments">
+            <div>Set up automatic bill payments and SIP investments</div>
+          </div>
+          <div class="detail-feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/295/295128.png" alt="Card">
+            <div>Virtual debit card for online transactions</div>
+          </div>
+        </div>
+        <div>
+          <div class="detail-feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/2933/2933245.png" alt="Analytics">
+            <div>Real-time spending analytics and budgeting tools</div>
+          </div>
+          <div class="detail-feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" alt="Support">
+            <div>24/7 customer support via chat, phone or video</div>
+          </div>
+          <div class="detail-feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/1570/1570887.png" alt="Security">
+            <div>Biometric login and transaction authentication</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 20px;">
+        <button style="background-color: #0e1a78; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem;" onclick="alert('Download our mobile app from App Store or Google Play')">Download Mobile App</button>
+      </div>
+      <div class="app-badges">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/1200px-Download_on_the_App_Store_Badge.svg.png" alt="App Store" class="app-badge" style="height: 40px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1200px-Google_Play_Store_badge_EN.svg.png" alt="Play Store" class="app-badge" style="height: 40px;">
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Branch Locator</a>
+      <a href="#">FAQs</a>
+    </div>
+    © 2025 Nexus Bank. All rights reserved. | Regulated by the Reserve Bank of India
+  </footer>
+
+  <script>
+    function toggleDetails(accountType) {
+      const details = document.getElementById(`${accountType}-details`);
+      details.style.display = details.style.display === "none" ? "block" : "none";
+      
+      // Close other open details
+      const allDetails = document.querySelectorAll('.account-details');
+      allDetails.forEach(detail => {
+        if(detail.id !== `${accountType}-details`) {
+          detail.style.display = "none";
+        }
+      });
+    }
+
+    function calculateInterest() {
+      const p = parseFloat(document.getElementById("principal").value);
+      const t = parseFloat(document.getElementById("years").value);
+      const rate = p > 100000 ? 0.07 : 0.04; // 7% for >1L, else 4%
+
+      if (isNaN(p) || isNaN(t) || p <= 0 || t <= 0) {
+        document.getElementById("result").innerText = "Please enter valid positive numbers.";
+        return;
+      }
+
+      const interest = p * rate * t;
+      const total = p + interest;
+
+      document.getElementById("result").innerHTML = `
+        <p>Principal Amount: ₹${p.toLocaleString('en-IN')}</p>
+        <p>Interest Rate: ${(rate*100).toFixed(1)}% ${p > 100000 ? '(Premium Rate)' : ''}</p>
+        <p>Total after ${t} year${t > 1 ? 's' : ''}: ₹${total.toLocaleString('en-IN')}</p>
+        <p>Interest Earned: ₹${interest.toLocaleString('en-IN')}</p>
+      `;
+    }
+    
+    // Initialize all details as hidden
+    document.addEventListener('DOMContentLoaded', function() {
+      const details = document.querySelectorAll('.account-details');
+      details.forEach(detail => {
+        detail.style.display = "none";
+      });
+    });
+  </script>
+
+</body>
+</html>
